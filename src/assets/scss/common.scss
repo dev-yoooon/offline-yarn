@@ -2,3 +2,10 @@
 
 @import 'base/reset';
 @import 'gnb';
+
+main {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 500px;
+}

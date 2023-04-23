@@ -1,4 +1,5 @@
 <% let active = locals.active ? locals.active : '' %>
+<% let slot = locals.slot ? locals.slot : '' %>
 
 <header class="gnb">
     <ul>
@@ -6,4 +7,5 @@
             <li <%- ( i == active ) ? 'class="active"' : '' %>><a href="#">menu<%= i %></a></li>
         <% } %>
     </ul>
+    <%- slot %>
 </header>
