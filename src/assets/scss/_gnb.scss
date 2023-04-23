@@ -1,0 +1,14 @@
+.gnb {
+	margin-top: 30px;
+	ul {
+		display: flex;
+		justify-content: center;
+		gap: 20px;
+	}
+	li {
+		&.active {
+			border-bottom: 1px solid #000;
+			font-weight: bold;
+		}
+	}
+}

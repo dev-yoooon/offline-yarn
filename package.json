@@ -1,0 +1,37 @@
+{
+  "name": "yoooon",
+  "version": "1.0.0",
+  "description": "gulp setting",
+  "main": "index.js",
+  "scripts": {
+    "start": "gulp",
+    "dev": "gulp"
+  },
+  "author": "yoooon",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.21.4",
+    "@babel/preset-env": "^7.21.4",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^8.0.0",
+    "gulp-babel": "^8.0.0",
+    "gulp-cached": "^1.1.1",
+    "gulp-changed": "^4.0.3",
+    "gulp-clean": "^0.4.0",
+    "gulp-connect": "^5.7.0",
+    "gulp-ejs": "^5.1.0",
+    "gulp-file-include": "^2.3.0",
+    "gulp-html-tag-include": "^1.0.1",
+    "gulp-load-plugins": "^2.0.8",
+    "gulp-plumber": "^1.2.1",
+    "gulp-postcss": "^9.0.1",
+    "gulp-prettier": "^4.0.0",
+    "gulp-replace": "^1.1.4",
+    "gulp-sass": "^5.1.0",
+    "gulp-sourcemaps": "^3.0.0",
+    "sass": "^1.60.0"
+  },
+  "dependencies": {
+    "ip": "^1.1.8"
+  }
+}

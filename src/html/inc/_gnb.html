@@ -1,0 +1,9 @@
+<% let active = locals.active ? locals.active : '' %>
+
+<header class="gnb">
+    <ul>
+        <% for(let i=0; i<5; i++) { %>
+            <li <%- ( i == active ) ? 'class="active"' : '' %>><a href="#">menu<%= i %></a></li>
+        <% } %>
+    </ul>
+</header>
