@@ -19,7 +19,11 @@
   ```
   Set-ExecutionPolicy Unrestricted
   ```
-
+  ## yarn ssl인증오류 
+  ```
+  yarn config set "strict-ssl" false
+  ```
+  
 # 4. package 설치
 ```
 yarn install --offline
