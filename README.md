@@ -13,6 +13,16 @@
   yarn -v
   ```
   
+  ## yarn ssl 인증오류 
+  ```
+  yarn config set "strict-ssl" false
+  ```
+  
+  ## gulp 설치
+  ```
+  yarn global add gulp
+  ```
+  
 # 3. 스크립트 실행 권한 바꿔주기
 <img width="800" alt="image" src="https://user-images.githubusercontent.com/99169513/233814113-a9e20286-12e3-4165-b53d-e4628f5e4eff.png">
 
