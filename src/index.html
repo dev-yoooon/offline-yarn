@@ -8,16 +8,22 @@
   <link rel="stylesheet" href="@@webRoot/assets/css/common.css">
 </head>
 <body>
-  <!-- header -->
-	<%- include('@@webRoot/html/inc/_gnb.html', {active: 0}) %>
-	<!-- //header -->
+  <!-- @@ include -->
+  @@include('@@webRoot/html/inc/_include_@@.html', {active: 0})
+  <!-- //@@ include -->
   
-  <main>Main Index</main>
-
-  <!-- footer -->
-  <include src="@@webRoot/html/inc/_footer.html">
-    <div>copyright 2023.</div>
+  <!-- ejs include -->
+  <%- include('@@webRoot/html/inc/_include_ejs.html', {
+    active: '0'
+  }) %>
+  <!-- //ejs include -->
+  
+  <!-- slot include -->
+  <include src="@@webRoot/html/inc/_include_slot.html" class="slot-class">
+    <p>slot content.</p>
   </include>
-  <!-- //footer -->
+  <!-- //slot include -->
+  
+  
 </body>
 </html>
