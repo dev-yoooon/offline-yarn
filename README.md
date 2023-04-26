@@ -23,15 +23,11 @@
   yarn global add gulp
   ```
   
-# 3. 스크립트 실행 권한 바꿔주기
+# 3. 스크립트 실행 권한 바꿔주기 (관리자권한 powershell)
 <img width="800" alt="image" src="https://user-images.githubusercontent.com/99169513/233814113-a9e20286-12e3-4165-b53d-e4628f5e4eff.png">
 
   ```
   Set-ExecutionPolicy Unrestricted
-  ```
-  ## yarn ssl인증오류 
-  ```
-  yarn config set "strict-ssl" false
   ```
   
 # 4. package 설치
@@ -52,6 +48,9 @@ gulp
 ## yarn offline
 https://musma.github.io/2019/08/23/nodejs-offline-deployment.html <br>
 https://songdev.tistory.com/74
+
+## yarn ssl false
+https://michielvanerp.wordpress.com/2019/03/13/yarn-unable-to-verify-the-first-certificate/
 
 ## 스크립트 실행 권한
 https://mebadong.tistory.com/33
