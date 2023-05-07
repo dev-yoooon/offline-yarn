@@ -14,6 +14,7 @@ const setProduct = async () => {
 const base = {
   src: './src',
   dist: './dist',
+  build: './build',
 }
 const dir = {
   src: {
@@ -25,6 +26,7 @@ const dir = {
     fonts: `${base.src}/assets/fonts/**/*`,
   },
   dist: {
+    html: `${base.dist}/**/*.html`,
     css: `${base.dist}/assets/css`,
     js: `${base.dist}/assets/js`,
     images: `${base.dist}/assets/images`,
@@ -52,10 +54,16 @@ const html = async () => {
     .pipe($.fileInclude())
     .pipe($.htmlTagInclude())
     .pipe($.ejs())
-    .pipe($.prettier())
+    // .pipe($.prettier())
     .pipe($.changed(base.dist, { hasChanged: $.changed.compareContents }))
     .pipe(dest(base.dist))
     .pipe($.connect.reload())
+}
+
+const prettyHtml = async () => {
+  return src(dir.dist.html)
+    .pipe($.prettier())
+    .pipe(dest(base.build))
 }
 
 const scss = async () => {

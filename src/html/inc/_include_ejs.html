@@ -9,7 +9,7 @@ const slot = locals.slot ? locals.slot : '';
     <ul>
         <% for(let i=0; i<5; i++) { -%>
             <li <%- ( i == active ) ? 'class="active"' : '' %>><a href="#">menu<%= i %></a></li>
-        <% } %>
+        <% } -%>
     </ul>
     <%- slot %>
 </div>

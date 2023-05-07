@@ -1,0 +1,31 @@
+%btn {
+	padding: 10px 20px;
+	border: none;
+}
+$c-primary: green;
+$c-secondary: gray;
+$c-danger: red;
+$types: round lined;
+$colors: (
+	'primary': $c-primary,
+	'secondary': $c-secondary,
+	'danger': $c-danger,
+);
+
+@each $type in $types {
+	.btn-#{$type} {
+		@each $name, $color in $colors {
+			&-#{$name} {
+				@extend %btn;
+				@if($type == round) {
+					border-radius: 100vw;
+					background-color: $color;
+					color: #fff;
+				}
+				@if($type == lined) {
+					border-bottom: 2px solid $color;
+				}
+			}
+		}
+	}
+}

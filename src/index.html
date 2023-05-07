@@ -16,13 +16,25 @@
   <%- include('@@webRoot/html/inc/_include_ejs.html', {
     active: '0'
   }) %>
+
+  <hr>
   <!-- //ejs include -->
+  <%- include('@@webRoot/components/buttons/button-round.html', {
+    text: 'yooon'
+  }) %>
   
   <!-- slot include -->
   <include src="@@webRoot/html/inc/_include_slot.html" class="slot-class">
     <p>slot content.</p>
   </include>
   <!-- //slot include -->
+
+  <p>pppp <span>test span</span></p>
+  <div>
+    <strong>title <em>emmmm</em></strong>
+
+    <p>jejiwedklmfjfjiewodqlkjej</p>
+  </div>
   
   
 </body>
