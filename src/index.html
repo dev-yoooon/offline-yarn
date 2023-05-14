@@ -6,6 +6,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <link rel="stylesheet" href="@@webRoot/assets/css/common.css">
+  <style>
+    .guide-wrap{background-color: #f5f5f5;min-height: 100vh;}
+    .guide-header{display: flex;justify-content: space-between;padding: 20px 30px;background-color: rgb(36, 182, 114);}
+    .guide-header ul{display: flex;gap: 20px;}
+    .guide-content{box-sizing: border-box;width: 1280px;margin: 0 auto;padding: 20px;background-color: #fff;border-radius: 10px;}
+    h1 {text-align: center;margin: 20px 0;}
+    table{width: 100%;margin-top: 30px;color: #838383;border-collapse: separate;border-spacing: 0;}
+    table thead {height: 40px;}
+    table th {position: sticky;top: 0;padding: 15px 10px;background-color: #fff;border-top: 2px solid #444;border-bottom: 1px solid #555;font-size: 14px;}
+    table td {padding: 10px;border-bottom: 1px solid #eee;}
+    table td:not(:first-child) {border-left: 1px solid #eee;}
+    table td:not(:first-child, :last-child) {text-align: center;}
+  </style>
 </head>
 <body>
   <div class="guide-wrap">
@@ -18,31 +31,33 @@
         <li><a href="#!">템플릿</a></li>
       </ul>
     </header>
+    
+    <h1>모바일 워크시트</h1>
 
-    <table>
-      <thead>
-        <tr>
-          <th>cate1</th>
-          <th>cate2</th>
-          <th>cate3</th>
-          <th>cate4</th>
-          <th>link</th>
-          <th>비고</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <tr>
-        </tr>
-      </tbody>
-    </table>
+    <div class="guide-content">
+      <table>
+        <colgroup>
+          <col span="5" style="width:13%">
+        </colgroup>
+        <thead>
+          <tr>
+            <th>Depth1</th>
+            <th>Depth2</th>
+            <th>Depth3</th>
+            <th>Depth4</th>
+            <th>Link</th>
+            <th>비고</th>
+          </tr>
+        </thead>
+  
+        <tbody>
+        </tbody>
+      </table>
+    </div>
 
   </div>
  
-  <script
-  src="https://code.jquery.com/jquery-3.7.0.min.js"
-  integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
-  crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
   <script>
     let listData = {};
     fetch('data.json')
@@ -55,14 +70,16 @@
 
       for (const [key, value] of Object.entries(data)) {
         value.forEach((obj) => {
+          let pageId = obj.link.split('/');
+          pageId = pageId[pageId.length - 1].replace('.html','');
           
           let td = `
           <tr>
-            <td>${obj.cate1}</td>
-            <td>${obj.cate2}</td>
-            <td>${obj.cate3}</td>
-            <td>${obj.cate4}</td>
-            <td>${obj.link}</td>
+            <td>${obj.cate1 ? obj.cate1 : ''}</td>
+            <td>${obj.cate2 ? obj.cate2 : ''}</td>
+            <td>${obj.cate3 ? obj.cate3 : ''}</td>
+            <td>${obj.cate4 ? obj.cate4 : ''}</td>
+            <td><a href="${key}${obj.link}" target="_blank">${pageId}</a></td>
             <td>${obj.etc}</td>
           </tr>
           `;
