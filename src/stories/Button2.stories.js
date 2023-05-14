@@ -27,12 +27,24 @@ export default {
     // backgroundColor: { control: 'color' },
     // onClick: { action: 'onClick' },
 		type: {
+      // type: { name: 'string', required: false },
 			control: { type: 'radio'},
 			options: ['round', 'lined' ],
+      description: 'string',
+      type: { required: true },
+      table: {
+        type: { summary: 'round | line'},
+        defaultValue: { summary: '' },
+      },
 		},
 		color: {
 			control: {type: 'select'},
 			options: ['primary', 'secondary', 'danger'],
+      description: 'string',
+      table: {
+        type: { summary: 'primary | secondary | danger'},
+        defaultValue: { summary: '' },
+      },
 		},
     size: {
       control: { type: 'select' },

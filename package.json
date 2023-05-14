@@ -19,7 +19,7 @@
     "@storybook/blocks": "^7.0.9",
     "@storybook/html": "^7.0.9",
     "@storybook/web-components": "^7.0.9",
-    "@storybook/web-components-webpack5": "^7.0.9",
+    "@storybook/web-componennpts-webpack5": "^7.0.9",
     "ejs": "^3.1.9",
     "ejs-compiled-loader": "^3.1.0",
     "gulp": "^4.0.2",

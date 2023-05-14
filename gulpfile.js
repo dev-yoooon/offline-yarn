@@ -100,16 +100,24 @@ const copyCss = async () => {
   return src([dir.src.css]).pipe(dest(dir.dist.css));
 }
 
+const guide = async () => {
+  return src('src/**/*.{json,js}')
+    .pipe(dest('dist/'))
+}
+
+
 const watcher = async () => {
   watch([ './src/**/*.{html,ejs}' ], html)
   watch([ dir.src.scss ], scss)
   watch([ dir.src.images ], image)
   watch([ dir.src.js ], js)
+  watch([ 'src/**/*.{json,js}' ], guide)
 }
+
 
 const webServer = parallel(watcher, server); 
 const dev = series(html, scss, image, font, js, copyCss);
 exports.clean = series(clean);
 exports.html = series(html);
 exports.build = series(setProduct, dev);
-exports.default = series(dev, webServer);
+exports.default = series(dev,guide, webServer);

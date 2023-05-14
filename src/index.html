@@ -8,34 +8,69 @@
   <link rel="stylesheet" href="@@webRoot/assets/css/common.css">
 </head>
 <body>
-  <!-- @@ include -->
-  @@include('@@webRoot/html/inc/_include_@@.html', {active: 0})
-  <!-- //@@ include -->
-  
-  <!-- ejs include -->
-  <%- include('@@webRoot/html/inc/_include_ejs.html', {
-    active: '0'
-  }) %>
+  <div class="guide-wrap">
+    <header class="guide-header">
+      <a href="#!" class="logo">DB</a>
+      <ul>
+        <li><a href="#!">워크시트</a></li>
+        <li><a href="#!">기본 가이드</a></li>
+        <li><a href="#!">컴포넌트</a></li>
+        <li><a href="#!">템플릿</a></li>
+      </ul>
+    </header>
 
-  <hr>
-  <!-- //ejs include -->
-  <%- include('@@webRoot/components/buttons/button-round.html', {
-    text: 'yooon'
-  }) %>
-  
-  <!-- slot include -->
-  <include src="@@webRoot/html/inc/_include_slot.html" class="slot-class">
-    <p>slot content.</p>
-  </include>
-  <!-- //slot include -->
+    <table>
+      <thead>
+        <tr>
+          <th>cate1</th>
+          <th>cate2</th>
+          <th>cate3</th>
+          <th>cate4</th>
+          <th>link</th>
+          <th>비고</th>
+        </tr>
+      </thead>
 
-  <p>pppp <span>test span</span></p>
-  <div>
-    <strong>title <em>emmmm</em></strong>
+      <tbody>
+        <tr>
+        </tr>
+      </tbody>
+    </table>
 
-    <p>jejiwedklmfjfjiewodqlkjej</p>
   </div>
-  
-  
+ 
+  <script
+  src="https://code.jquery.com/jquery-3.7.0.min.js"
+  integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
+  crossorigin="anonymous"></script>
+  <script>
+    let listData = {};
+    fetch('data.json')
+    .then((response) => response.json())
+    .then((data) => {list(data)});
+
+    function list(data) {
+      $tbody = $('table tbody');
+      $td = $('table tbody td');
+
+      for (const [key, value] of Object.entries(data)) {
+        value.forEach((obj) => {
+          
+          let td = `
+          <tr>
+            <td>${obj.cate1}</td>
+            <td>${obj.cate2}</td>
+            <td>${obj.cate3}</td>
+            <td>${obj.cate4}</td>
+            <td>${obj.link}</td>
+            <td>${obj.etc}</td>
+          </tr>
+          `;
+          $tbody.append(td);
+        });
+      }
+      
+    }
+  </script>
 </body>
 </html>

@@ -11,5 +11,14 @@ const config = {
   docs: {
     autodocs: "tag",
   },
+  // webpackFinal: async (config, { configType }) => {
+  // config.module.rules.push({
+  //   test: /\.ejs$/,
+  //   use: ['ejs-compiled-loader'],
+  //   include: path.resolve(__dirname, '../html/inc')
+  // })
+  // console.log(__dirname);
+  // return config
+// }
 };
 export default config;

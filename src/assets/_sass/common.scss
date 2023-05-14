@@ -10,3 +10,12 @@ main {
 	align-items: center;
 	height: 500px;
 }
+
+.form-wrap {
+	padding: 20px 30px;
+	border: 1px solid gray;
+	border-radius: 10px;
+	&:focus-within {
+		border: 1px solid red;
+	}
+}

@@ -1,0 +1,24 @@
+<%  
+const title = locals.title ? locals.title : 'title';
+const type = locals.type ? locals.type : '';
+const footer = locals.footer ? locals.footer : '';
+const end = locals.end ? true : false;
+_%>
+
+<% if( !end ) { %>
+    <div class="pop-wrap <%= type %>">
+        <% if( title) { %>
+        <div class="pop-header">
+            <h1><%- title %></h1>
+        </div>
+        <% } %>
+        <div class="pop-content">
+
+        </div>
+        <% if ( footer ) { %>
+        <div class="pop-footer">
+
+        </div>
+        <% } %>
+    </div>
+<% } %>
