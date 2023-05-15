@@ -87,7 +87,13 @@ main {
 		}
 	}
 	label.active + ul {
-		// display: block;
 		max-height: 150px;
+	}
+	select {
+		width: 100%;
+		padding: 10px;
+		box-sizing: border-box;
+		height: 40px;
+		border: 1px solid #ddd;
 	}
 }

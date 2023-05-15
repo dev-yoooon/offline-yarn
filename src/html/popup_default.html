@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <link rel="stylesheet" href="../assets/css/common.css">
+  <link rel="stylesheet" href="@@webRoot/assets/css/common.css">
 </head>
 <body>
 	
@@ -13,19 +13,10 @@
         <div class="bottom-sheet">
             <div class="select-wrap">
                 <div class="label">select</div>
-                <label for="sel">select.....</label>
-                <!-- <ul>
-                    
-                    <li><a href="#!">option </a></li>
-                    
-                </ul> -->
-
-                <select name="" id="sel" class="blind">
-                    <option value=""></option>
-                    <option value=""></option>
-                    <option value=""></option>
-                    <option value=""></option>
-                    <option value=""></option>
+                <select name="" id="sel">
+                    <% for(let i = 0; i < 20; i++) { %>
+                        <option value="">system option <%= i %></option>
+                    <% } %>
                 </select>
             </div>
             <div class="input-wrap">

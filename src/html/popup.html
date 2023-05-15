@@ -14,23 +14,25 @@
             <div class="select-wrap">
                 <div class="label">select</div>
                 <label for="sel">select.....</label>
-                <ul>
-                    <% for(let i = 0; i < 20; i++) { %>
-                    <li><a href="#!">option <%= i %></a></li>
-                    <% } %>
-                </ul>
+                <!-- <ul>
+                    <%# for(let i = 0; i < 20; i++) { %>
+                    <li><a href="#!">option <%#= i %></a></li>
+                    <%# } %>
+                </ul> -->
+
+                <select name="" id="sel" class="blind">
+                    <option value=""></option>
+                    <option value=""></option>
+                    <option value=""></option>
+                    <option value=""></option>
+                    <option value=""></option>
+                </select>
             </div>
             <div class="input-wrap">
                 <label for="inp" class="label">inpput</label>
                 <input type="text" placeholder="input text">
             </div>
-            <!-- <select name="" id="sel" class="blind">
-                <option value=""></option>
-                <option value=""></option>
-                <option value=""></option>
-                <option value=""></option>
-                <option value=""></option>
-            </select> -->
+            
             <div class="popup-footer">
                 <button type="button">다음</button>
             </div>
