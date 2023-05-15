@@ -12,6 +12,14 @@
 	<%- include('@@webRoot/html/inc/_gnb.html', {active: 1}) %>
 	<!-- //header -->
 
-  Page Index
+  <%- include('@@webRoot/html/inc/_popup.html', {title: 'modal test'}) %>
+    <ul>
+      <li>list1</li>
+      <li>list2</li>
+      <li>list3</li>
+      <li>list4</li>
+    </ul>
+    <%- include('@@webRoot/components/buttons/button-round.html', {text: 'BUTTON'}) %>
+  <%- include('@@webRoot/html/inc/_popup.html', {end: true}) %>
 </body>
 </html>
