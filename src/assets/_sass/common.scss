@@ -95,5 +95,10 @@ main {
 		box-sizing: border-box;
 		height: 40px;
 		border: 1px solid #ddd;
+		background-color: #fff;
+		border-radius: 0;
+	}
+	option {
+		width: 100%;
 	}
 }
