@@ -1,94 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="../assets/css/common.css">
-</head>
-<body>
-	
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../assets/css/common.css" />
+  </head>
+  <body>
     <div class="popup">
-        <div class="bottom-sheet">
-            <div class="select-wrap">
-                <div class="label">select</div>
-                <select name="" id="sel">
-                    
-                        <option value="">system option 0</option>
-                    
-                        <option value="">system option 1</option>
-                    
-                        <option value="">system option 2</option>
-                    
-                        <option value="">system option 3</option>
-                    
-                        <option value="">system option 4</option>
-                    
-                        <option value="">system option 5</option>
-                    
-                        <option value="">system option 6</option>
-                    
-                        <option value="">system option 7</option>
-                    
-                        <option value="">system option 8</option>
-                    
-                        <option value="">system option 9</option>
-                    
-                        <option value="">system option 10</option>
-                    
-                        <option value="">system option 11</option>
-                    
-                        <option value="">system option 12</option>
-                    
-                        <option value="">system option 13</option>
-                    
-                        <option value="">system option 14</option>
-                    
-                        <option value="">system option 15</option>
-                    
-                        <option value="">system option 16</option>
-                    
-                        <option value="">system option 17</option>
-                    
-                        <option value="">system option 18</option>
-                    
-                        <option value="">system option 19</option>
-                    
-                </select>
-            </div>
-            <div class="input-wrap">
-                <label for="inp" class="label">inpput</label>
-                <input type="text" placeholder="input text">
-            </div>
-            
-            <div class="popup-footer">
-                <button type="button">다음</button>
-            </div>
+      <div class="bottom-sheet">
+        <div class="select-wrap">
+          <div class="label">select</div>
+          <select name="" id="sel">
+            <option value="">system option 0</option>
+
+            <option value="">system option 1</option>
+
+            <option value="">system option 2</option>
+
+            <option value="">system option 3</option>
+
+            <option value="">system option 4</option>
+
+            <option value="">system option 5</option>
+
+            <option value="">system option 6</option>
+
+            <option value="">system option 7</option>
+
+            <option value="">system option 8</option>
+
+            <option value="">system option 9</option>
+
+            <option value="">system option 10</option>
+
+            <option value="">system option 11</option>
+
+            <option value="">system option 12</option>
+
+            <option value="">system option 13</option>
+
+            <option value="">system option 14</option>
+
+            <option value="">system option 15</option>
+
+            <option value="">system option 16</option>
+
+            <option value="">system option 17</option>
+
+            <option value="">system option 18</option>
+
+            <option value="">system option 19</option>
+          </select>
         </div>
+        <div class="input-wrap">
+          <label for="inp" class="label">inpput</label>
+          <input type="text" placeholder="input text" />
+        </div>
+
+        <div class="popup-footer">
+          <button type="button">다음</button>
+        </div>
+      </div>
     </div>
 
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script>
-    $(function(){
-        $bottom = $('.bottom-sheet');
-        $select = $bottom.find('.select-wrap label');
-        $ul = $bottom.find('ul');
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+      $(function () {
+        $bottom = $(".bottom-sheet");
+        $select = $bottom.find(".select-wrap label");
+        $ul = $bottom.find("ul");
 
-        $select.on('click', function(e){
-            e.preventDefault();
+        $select.on("click", function (e) {
+          e.preventDefault();
 
-            
-            if($(this).hasClass('active')){
-                $(this).removeClass('active');
-                $ul.slideUp();
-            }else{
-                $(this).addClass('active');
-                $ul.slideDown();
-            }
-        })
-
-    })
-</script>
-</body>
+          if ($(this).hasClass("active")) {
+            $(this).removeClass("active");
+            $ul.slideUp();
+          } else {
+            $(this).addClass("active");
+            $ul.slideDown();
+          }
+        });
+      });
+    </script>
+  </body>
 </html>

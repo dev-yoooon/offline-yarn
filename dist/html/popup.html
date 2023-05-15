@@ -1,65 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="../assets/css/common.css">
-</head>
-<body>
-	
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../assets/css/common.css" />
+  </head>
+  <body>
     <div class="popup">
-        <div class="bottom-sheet">
-            <div class="select-wrap">
-                <div class="label">select</div>
-                <label for="sel">select.....</label>
-                <!-- <ul>
-                    
-                    <li><a href="#!">option </a></li>
-                    
-                </ul> -->
+      <div class="bottom-sheet">
+        <div class="select-wrap">
+          <div class="label">select</div>
+          <label for="sel">select.....</label>
+          <ul>
+            <li><a href="!">option 0</a></li>
 
-                <select name="" id="sel" class="blind">
+            <li><a href="!">option 1</a></li>
+
+            <li><a href="!">option 2</a></li>
+
+            <li><a href="!">option 3</a></li>
+
+            <li><a href="!">option 4</a></li>
+
+            <li><a href="!">option 5</a></li>
+
+            <li><a href="!">option 6</a></li>
+
+            <li><a href="!">option 7</a></li>
+
+            <li><a href="!">option 8</a></li>
+
+            <li><a href="!">option 9</a></li>
+
+            <li><a href="!">option 10</a></li>
+
+            <li><a href="!">option 11</a></li>
+
+            <li><a href="!">option 12</a></li>
+
+            <li><a href="!">option 13</a></li>
+
+            <li><a href="!">option 14</a></li>
+
+            <li><a href="!">option 15</a></li>
+
+            <li><a href="!">option 16</a></li>
+
+            <li><a href="!">option 17</a></li>
+
+            <li><a href="!">option 18</a></li>
+
+            <li><a href="!">option 19</a></li>
+          </ul>
+
+          <!-- <select name="" id="sel" class="blind">
                     <option value=""></option>
                     <option value=""></option>
                     <option value=""></option>
                     <option value=""></option>
                     <option value=""></option>
-                </select>
-            </div>
-            <div class="input-wrap">
-                <label for="inp" class="label">inpput</label>
-                <input type="text" placeholder="input text">
-            </div>
-            
-            <div class="popup-footer">
-                <button type="button">다음</button>
-            </div>
+                </select> -->
         </div>
+        <div class="input-wrap">
+          <label for="inp" class="label">inpput</label>
+          <input type="text" placeholder="input text" />
+        </div>
+
+        <div class="popup-footer">
+          <button type="button">다음</button>
+        </div>
+      </div>
     </div>
 
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script>
-    $(function(){
-        $bottom = $('.bottom-sheet');
-        $select = $bottom.find('.select-wrap label');
-        $ul = $bottom.find('ul');
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+      $(function () {
+        $bottom = $(".bottom-sheet");
+        $select = $bottom.find(".select-wrap label");
+        $ul = $bottom.find("ul");
 
-        $select.on('click', function(e){
-            e.preventDefault();
+        $select.on("click", function (e) {
+          e.preventDefault();
 
-            
-            if($(this).hasClass('active')){
-                $(this).removeClass('active');
-                $ul.slideUp();
-            }else{
-                $(this).addClass('active');
-                $ul.slideDown();
-            }
-        })
-
-    })
-</script>
-</body>
+          if ($(this).hasClass("active")) {
+            $(this).removeClass("active");
+            $ul.slideUp();
+          } else {
+            $(this).addClass("active");
+            $ul.slideDown();
+          }
+        });
+      });
+    </script>
+  </body>
 </html>
