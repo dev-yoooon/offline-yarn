@@ -1,0 +1,14 @@
+@charset 'utf-8';
+
+@use 'sass:math';
+
+@function div($num, $num2) {
+    @return math.div($num, $num2);
+}
+
+@function remove-unit($value) {
+    @return div($value, ($value * 0 + 1));
+}
+@function rem($px, $base: 16) {
+    @return (remove-unit(div($px, $base))) * 1rem;
+}

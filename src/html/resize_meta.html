@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="@@webRoot/assets/css/common.css">
+</head>
+<body>
+	
+
+    @@include('inc/_resize.html')
+
+
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+$(function(){
+
+    $(document).on('load', meta(360));
+    $(window).on('resize', function(){
+        meta(360);
+    });
+    
+    function meta(view) {
+        console.log(screen.width);
+        const $viewport = $('meta[name="viewport"]');
+        if (screen.width < view) {
+            $viewport.attr("content", `width=${view}, initial-scale=1.0`); 
+        } else {
+            $viewport.attr("content", "width=device-width, initial-scale=1.0"); 
+        }    
+    }
+})
+</script>
+</body>
+</html>
