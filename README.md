@@ -41,6 +41,9 @@ gulp
 ```
   ## mission success 👍🏻
   <img width="468" alt="image" src="https://user-images.githubusercontent.com/99169513/233814540-f909bb31-764e-4b3d-a418-0a8e8cccbd3b.png">
+  
+# jquery 3.6.4
+https://code.jquery.com/jquery-3.6.4.min.js
 
 
 # 참고 링크
