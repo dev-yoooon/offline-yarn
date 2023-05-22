@@ -1,0 +1,47 @@
+@charset 'utf-8';
+
+.btn {
+    --button-height: 40px;
+    --btn-radius: 5px;
+    --btn-bg: green;
+    --btn-border-color: green;
+    --btn-text-color: white;
+
+    width: 100%;
+    height: var(--btn-height);
+    border-radius: var(--btn-radius);
+    background-color: var(--btn-bg);
+    border: 1px solid var(--btn-border-color);
+    color: var(--btn-text-color);
+
+    &[class *= btn-line] {
+        --btn-bg: white;
+        --btn-border-color: gray;
+        --btn-text-color: dark gray;
+    }
+
+    &.btn-xxxl {
+        --btn-height: 40px;
+    }
+    &.btn-xxl {
+        --btn-height: 32px;
+    }
+    &.btn-xl {
+        --btn-height: 28px;
+    }
+    &.btn-l {
+        --btn-height: 24px;
+    }
+    &.btn-m {
+        --btn-height: 18px;
+    }
+    &.btn-s {
+        --btn-height: 14px;
+    }
+}
+
+.test {
+    .btn {
+        --btn-height: 20px;
+    }
+}
