@@ -97,7 +97,7 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script>
       $(function () {
-        $(document).on("load", meta(360));
+        $(document).on("load", meta(1000));
         $(window).on("resize", function () {
           meta(360);
         });
@@ -108,7 +108,9 @@
           if (screen.width < view) {
             $viewport.attr(
               "content",
-              `width=${view}, initial-scale=1.0, user-scalable=yes`
+              `width=${view}, initial-scale=${
+                screen.width / view
+              }, user-scalable=yes`
             );
           } else {
             $viewport.attr(

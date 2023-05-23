@@ -18,7 +18,7 @@
 <script>
 $(function(){
 
-    $(document).on('load', meta(360));
+    $(document).on('load', meta(1000));
     $(window).on('resize', function(){
         meta(360);
     });
@@ -27,7 +27,7 @@ $(function(){
         console.log(screen.width);
         const $viewport = $('meta[name="viewport"]');
         if (screen.width < view) {
-            $viewport.attr("content", `width=${view}, initial-scale=1.0, user-scalable=yes`); 
+            $viewport.attr("content", `width=${view}, initial-scale=${screen.width/view}, user-scalable=yes`); 
         } else {
             $viewport.attr("content", "width=device-width, initial-scale=1.0, user-scalable=yes"); 
         }    
