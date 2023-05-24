@@ -1,0 +1,32 @@
+<% 
+const end = locals.end ? true : false;
+const footer = locals.footer ? true : false;
+%>
+
+<% if(!end) { %>
+<div class="ly_step-wrap">
+    <div class="step-header">
+        <button type="button" class="btn-goback">백</button> 
+        <h1 class="f_tit-xl">보험상품 제목이지롱</h1>
+        <div class="btn-group">
+            <button type="button" class="btn-menu" aria-label="menu"></button>
+            <a href="#!" class="btn-home" aria-label="홈으로 가기"></a>
+        </div>
+    </div>
+    
+    <div class="step-content">
+<% } %>
+<% if(end) { %>
+    </div>
+    
+    <% if(footer) { %>
+    <div class="step-footer">
+        button
+    </div>
+    <% } %>
+    <button class="btn-close" aria-label="close"></button>
+    <pre><code>
+aaaaaa
+    </code></pre>
+</div>
+<% } %>

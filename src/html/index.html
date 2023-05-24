@@ -8,18 +8,38 @@
   <link rel="stylesheet" href="@@webRoot/assets/css/common.css">
 </head>
 <body>
-	<!-- header -->
-	<%- include('@@webRoot/html/inc/_gnb.html', {active: 1}) %>
-	<!-- //header -->
+	<div id="wrap">
+    <!-- header -->
+    <header class="gnb">
+      <button type="button" class="gnb-goback">백</button> 
+      <h1 class="f_tit-xl">보험상품 제목이지롱</h1>
+      <div class="gnb-btn-group">
+        <button type="button" class="gnb-menu" aria-label="menu"></button>
+        <a href="#!" class="gnb-home" aria-label="홈으로 가기"></a>
+      </div>
+    </header>
+    <!-- //header -->
 
-  <%- include('@@webRoot/html/inc/_popup.html', {title: 'modal test'}) %>
-    <ul>
-      <li>list1</li>
-      <li>list2</li>
-      <li>list3</li>
-      <li>list4</li>
-    </ul>
-    <%- include('@@webRoot/components/buttons/button-round.html', {text: 'BUTTON'}) %>
-  <%- include('@@webRoot/html/inc/_popup.html', {end: true}) %>
+    <!-- content -->
+    <main id="content">
+
+    </main>
+    <!-- //content -->
+
+    <!-- footer -->
+    <footer id="footer">
+
+    </footer>
+    <!-- //footer -->
+  </div>
+  <!-- <include src="layer-content.html">
+    content??
+  </include> -->
+
+  <%- include('layer-content.html') %>
+  <div class="pop-cont">
+    <h2>text</h2>
+  </div>
+  <%- include('layer-content.html', {end: true, footer: true}) %>
 </body>
 </html>

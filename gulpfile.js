@@ -18,7 +18,7 @@ const base = {
 }
 const dir = {
   src: {
-    html: `${base.src}/**/*.{html,ejs}`,
+    html: `${base.src}/**/*.html`,
     scss: `${base.src}/assets/_sass/**/*.scss`,
     css: `${base.src}/assets/_sass/**/*.css`,
     js: `${base.src}/assets/js/**/*.js`,
@@ -55,6 +55,7 @@ const html = async () => {
     .pipe($.htmlTagInclude())
     .pipe($.ejs())
     // .pipe($.prettier())
+    .pipe($.beautify.html({}))
     .pipe($.changed(base.dist, { hasChanged: $.changed.compareContents }))
     .pipe(dest(base.dist))
     .pipe($.connect.reload())
@@ -73,7 +74,7 @@ const scss = async () => {
     .pipe(sass({
       outputStyle: 'expanded'
     })).on('error', sass.logError)
-    // .pipe($.prettier())
+    .pipe($.prettier())
     .pipe($.if(!isProduct, $.sourcemaps.write()))
     .pipe(dest(dir.dist.css), {sourcemaps: '.'})
     .pipe($.connect.reload())
