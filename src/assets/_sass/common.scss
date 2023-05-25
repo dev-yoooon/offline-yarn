@@ -1,14 +1,20 @@
 @charset 'utf-8';
 
 @import 'base/reset';
+@import 'base/mixins';
 @import 'components/buttons';
 @import 'gnb';
+
+h1 {
+	@include font('xxl', bold);
+}
 
 main {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	height: 500px;
+	
 }
 
 .form-wrap {

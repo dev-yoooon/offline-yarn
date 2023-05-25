@@ -1,0 +1,18 @@
+@use "sass:list";
+$font: (
+    xxxl: 54 1.2,
+    xxl: 36 1.3,
+    xl: 24 1.2
+);
+
+@mixin font($size:null, $weight:null){
+    @each $name, $fs in $font {
+        @if $name == $size {
+            font-size: list.nth($fs, 1) * 1px;
+            line-height: list.nth($fs, 2);
+            @if $weight != null {
+                font-weight: $weight;
+            }
+        }
+    }
+}
