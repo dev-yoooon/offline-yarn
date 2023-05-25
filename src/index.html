@@ -19,6 +19,9 @@
     table td:not(:first-child) {border-left: 1px solid #eee;}
     table td:not(:first-child, :last-child) {text-align: center;}
   </style>
+  <link rel="stylesheet" href="./guide/prism.css">
+  <script src="guide/prism.js"></script>
+  
 </head>
 <body>
   <div class="guide-wrap">
@@ -55,10 +58,32 @@
       </table>
     </div>
 
+    <details>
+      <summary>click</summary>
+      <pre class="language-markup"><code><!--
+        <%- include ('@@webRoot/html/inc/_gnb.html') %>
+        --></code></pre>
+    </details>
+
+
+<pre class="language-markup"><code>
+&lt;%- include ('@@webRoot/html/inc/_gnb.html') %&gt;
+  </code></pre>
+
+
   </div>
+  
  
   <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
   <script>
+    Prism.plugins.NormalizeWhitespace.setDefaults({
+      'remove-trailing': true,
+      'remove-indent': true,
+      'left-trim': true,
+      'right-trim': true,
+      'remove-initial-line-feed': true,
+    });
+
     let listData = {};
     fetch('data.json')
     .then((response) => response.json())

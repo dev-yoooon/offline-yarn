@@ -1,10 +1,10 @@
-<% let active = locals.active ? locals.active : '' %>
-<% let slot = locals.slot ? locals.slot : '' %>
+<% let active = locals.active ? locals.active : '' _%>
+<% let slot = locals.slot ? locals.slot : '' _%>
 
 <header class="gnb">
     <ul>
-        <% for(let i=0; i<5; i++) { %>
-            <li <%- ( i == active ) ? 'class="active"' : '' %>><a href="#">menu<%= i %></a></li>
+        <% for(let i=0; i<5; i++) { _%>
+        <li <%- ( i == active ) ? 'class="active"' : '' %>><a href="#">menu<%= i %></a></li>
         <% } %>
     </ul>
     <%- slot %>
