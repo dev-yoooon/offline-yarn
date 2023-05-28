@@ -1,0 +1,101 @@
+<!-- input text -->
+<div class="inp">
+    <label for="">input text</label>
+    <input type="text">    
+</div>
+<hr>
+<!-- input select -->
+<div class="inp">
+    <label for="">input select</label>
+    <button type="button" role="">
+        선택
+    </button>
+</div>
+<hr>
+<!-- checkbox -->
+<div class="inp-check">
+    <input type="checkbox" >
+    <label for="">abc</label>
+</div>
+<hr>
+<!-- radio -->
+<div class="inp-radio">
+    <input type="radio">
+    <label for="">radio</label>
+</div>
+
+<hr>
+<!-- stack -->
+<div class="inp-stack">
+     
+    <!-- input text -->
+    <div class="inp focus active">
+        <label for="">1</label>
+        <input type="text">    
+    </div>
+
+    <!-- input select -->
+    <div class="inp">
+        <label for="">2</label>
+        <button type="button" role="">
+            선택
+        </button>
+    </div>
+
+     <!-- input select -->
+     <div class="inp">
+        <label for="">3</label>
+        <button type="button" role="">
+            선택
+        </button>
+    </div>
+   
+    <span class="inp-focus"></span>
+</div>
+
+<button type="button" class="stack-btn">stack focus</button>
+
+<script>
+$(function(){
+    const $stack = $('.inp-stack');
+    const $stackItem = $stack.find('.inp');
+    const $stackBtn = $('.stack-btn');
+    let count = 0;
+    let itemH = 0;
+    
+    stack(0);
+
+    
+    $stackBtn.on('click', function(e){
+        e.preventDefault();
+        count = (count < $stackItem.length) ? count += 1 : count;
+
+        stack(count);
+
+    });
+
+
+    function stack(idx){
+        $stackItem.eq(idx).addClass('active');
+        itemH += $stackItem.eq(idx).outerHeight();
+        $stack.css({'--stack-height': itemH});
+    }
+
+    const test = new stack();
+});
+
+$.fn.stack = function(){
+    return this.each(function(){
+        // const $stackItem = $(this);
+        // const $stackBtn = $('.stack-btn');
+        // let count = 0;
+        // let itemH = 0;
+
+        // $stackItem.eq(idx).addClass('active');
+        // itemH += $stackItem.eq(idx).outerHeight();
+        // $stack.css({'--stack-height': itemH});
+
+        console.log(this);
+    });
+}
+</script>

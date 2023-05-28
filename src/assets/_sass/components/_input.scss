@@ -1,0 +1,61 @@
+body{
+    margin: 20px;
+}
+.inp {
+    position: relative;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    background-color: #fff;
+
+    &.focus {
+        border-color: green;
+    }
+
+    @at-root .inp-stack & {
+        border-color: transparent;
+        
+        opacity: 0;
+        visibility: hidden;
+        position: relative;
+        &.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        &:not(:last-child)::after {
+            content: '';
+            display: block;
+            position: absolute;
+            left: 20px;
+            right: 20px;
+            bottom: 0;
+            height: 1px;
+            background-color: #ddd;
+        }
+
+        &.focus {
+            @extend .focus;
+        }
+    }
+
+    &-stack {
+        --stack-height: 0px;
+        overflow: hidden;
+        height: calc(var(--stack-height) * 1px);
+        position: relative;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column-reverse;
+
+        transition: all .25s;
+    }
+    label {
+        display: block;
+        margin-bottom: 10px;
+    }
+    input {
+        border: 1px solid #f1f1f1;
+    }
+
+}
