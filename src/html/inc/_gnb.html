@@ -1,11 +1,43 @@
-<% let active = locals.active ? locals.active : '' _%>
-<% let slot = locals.slot ? locals.slot : '' _%>
+<header class="header layer-header">
+    <!-- button goback -->
+    <button type="button" class="btn-back">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16 20L8 12L16 4" stroke="#1C1C28" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>            
+    </button>
+    <!-- //button goback -->
+    <!-- title -->
+    <h1 class="header-tit"><span>자동차 정보</span></h1>
+    <!-- //title -->
 
-<header class="gnb">
-    <ul>
-        <% for(let i=0; i<5; i++) { _%>
-        <li <%- ( i == active ) ? 'class="active"' : '' %>><a href="#">menu<%= i %></a></li>
-        <% } %>
-    </ul>
-    <%- slot %>
+    <!-- step menu -->
+    <button type="button" class="btn-step" aria-label="진행중 메뉴보기">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="4" width="20" height="1.6" fill="#1C1C28"/>
+            <rect x="2" y="11" width="20" height="1.6" fill="#1C1C28"/>
+            <rect x="2" y="18" width="20" height="1.6" fill="#1C1C28"/>
+            </svg>            
+    </button>
+    <!-- //step menu -->
+
+    <!-- home -->
+    <button type="button" class="btn-home" aria-label="home">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3.75 21.25V8.07518L12.5 1.91712L21.25 8.07518V21.25H3.75Z" stroke="#1C1C28" stroke-width="1.5"/>
+            <path d="M9.99609 17H14.9961" stroke="#1C1C28"/>
+            </svg>            
+    </button>
+    <!-- //home -->
+
+    <!-- step content -->
+    <div class="step-menu">
+        <ul>
+            <li><a href="#!">Menu1</a></li>
+            <li><a href="#!">Menu1</a></li>
+            <li><a href="#!">Menu1</a></li>
+        </ul>
+        <button type="button" aria-label="close">닫기</button>
+    </div>
+    <!-- //step content -->
+
 </header>
