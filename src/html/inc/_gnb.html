@@ -1,4 +1,13 @@
+<%  
+const addClass = locals.addClass ? locals.addClass : '';
+const goback = locals.goback ? true : false;
+const title = locals.title ? locals.title : 'DB손해보험';
+const home = locals.home ? true : false;
+const step = locals.step ? true : false;
+const stepMenu = locals.stepMenu ? locals.stepMenu : false;
+_%>
 <header class="header layer-header">
+    <% if( goback ) { _%>
     <!-- button goback -->
     <button type="button" class="btn-back">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -6,10 +15,12 @@
             </svg>            
     </button>
     <!-- //button goback -->
+    <% } _%>
     <!-- title -->
-    <h1 class="header-tit"><span>자동차 정보</span></h1>
+    <h1 class="header-tit"><%- title %></h1>
     <!-- //title -->
 
+    <% if( step ) { _%>
     <!-- step menu -->
     <button type="button" class="btn-step" aria-label="진행중 메뉴보기">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -19,7 +30,9 @@
             </svg>            
     </button>
     <!-- //step menu -->
+    <% } _%>
 
+    <% if( home ) { _%>
     <!-- home -->
     <button type="button" class="btn-home" aria-label="home">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -28,7 +41,9 @@
             </svg>            
     </button>
     <!-- //home -->
+    <% } _%>
 
+    <% if( stepMenu ) { _%>
     <!-- step content -->
     <div class="step-menu">
         <ul>
@@ -39,5 +54,6 @@
         <button type="button" aria-label="close">닫기</button>
     </div>
     <!-- //step content -->
+    <% } _%>
 
 </header>

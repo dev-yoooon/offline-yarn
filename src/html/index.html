@@ -6,18 +6,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <link rel="stylesheet" href="@@webRoot/assets/css/common.css">
+  <% 
+    const inc = `@@webRoot/html/inc`;
+    const components = '@@webRoot/components';
+    const template = '@@webRoot/html/template'
+    _%>
 </head>
 <body>
 <div id="wrap">
   <!-- header -->
-  <header class="gnb">
-    <button type="button" class="gnb-goback">백</button> 
-    <h1 class="f_tit-xl">보험상품 제목이지롱</h1>
-    <div class="gnb-btn-group">
-      <button type="button" class="gnb-menu" aria-label="menu"></button>
-      <a href="#!" class="gnb-home" aria-label="홈으로 가기"></a>
-    </div>
-  </header>
+  <%- include(`${inc}/_gnb.html`) %>
   <!-- //header -->
 
   <!-- content -->

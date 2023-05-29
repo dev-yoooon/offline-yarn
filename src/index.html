@@ -20,7 +20,7 @@
     table td:not(:first-child, :last-child) {text-align: center;}
   </style>
   <link rel="stylesheet" href="./guide/prism.css">
-  <script src="guide/prism.js"></script>
+  <script src="guide/prism.js"></script>  
   
 </head>
 <body>
@@ -60,9 +60,9 @@
 
     <details>
       <summary>click</summary>
-      <pre class="language-markup"><code><!--
-        <%- include ('@@webRoot/html/inc/_gnb.html') %>
-        --></code></pre>
+      <script type="text/plain" class="language-markup">
+      <%- include ('@@webRoot/html/inc/_gnb.html', {home: true}) %> 
+      </script>
     </details>
 
 
@@ -70,19 +70,61 @@
 &lt;%- include ('@@webRoot/html/inc/_gnb.html') %&gt;
 </code></pre>
 
+<dl style="display: grid;grid-template-columns: 100px auto;">
+  <dt>*-wrap</dt>
+  <dd>컨텐츠를 감싸는 영역 (최상위 요소로 사용한다.)</dd>
+  <dt>*-inner</dt>
+  <dd>-wrap보다는 작은 영역으로 -area, -group 등을 어쩔 수 없이 감싸는 형태로 사용할 때 </dd>
+  <dt>*-area</dt>
+  <dd>-wrap보다 작은 영역</dd>
+  <dt>*-list</dt>
+  <dd>list</dd>
+  <dt>*-item</dt>
+  <dd>-list의 아이템</dd>
+  <dt>*-group</dt>
+  <dd>작은 unit을 감싸는 영역</dd>
+  <dt>*-unit</dt>
+  <dd>-item 보다 작은 영역</dd>
+</dl>
+
+<pre class="language-markup"><code>
+.tab
+  .tab-title-area
+    .tab-list
+      .tab-item
+      .tab-item
+  .tab-content-area
+    .tab-content
+    .tab-content
+</code></pre>
+
+<pre class="language-css"><code>
+.check-area
+  .check-list
+    .check-item
+    .check-item
+    .check-item
+.desc-area
+  .desc-list
+    .desc-item
+</code></pre>
+
+<pre class="language-css"><code>
+.inp
+  .inp-label
+  .inp-group
+    .inp-text
+    .inp-hypen
+    .inp-text
+</code></pre>
+
 
   </div>
   
  
+  
   <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
   <script>
-    Prism.plugins.NormalizeWhitespace.setDefaults({
-      'remove-trailing': true,
-      'remove-indent': true,
-      'left-trim': true,
-      'right-trim': true,
-      'remove-initial-line-feed': true,
-    });
 
     let listData = {};
     fetch('data.json')
