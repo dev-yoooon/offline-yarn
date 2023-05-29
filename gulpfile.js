@@ -80,6 +80,7 @@ const image = async () => {
 
 const js = async () => {
   return src([dir.src.js])
+    .pipe($.concat('plugin.js'))
     .pipe(dest(dir.dist.js))
 }
 

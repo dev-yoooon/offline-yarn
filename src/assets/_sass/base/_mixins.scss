@@ -1,6 +1,8 @@
 @charset 'utf-8';
 
 @use 'sass:math';
+@use 'sass:string';
+@use 'sass:list';
 
 @function div($num, $num2) {
     @return math.div($num, $num2);
@@ -12,3 +14,37 @@
 @function rem($px, $base: 16) {
     @return (remove-unit(div($px, $base))) * 1rem;
 }
+
+
+@function split($selector, $append, $order, $pos){
+    $arr         : string.split($selector, ' ');
+    $length      : length($arr);
+    $order       : if( $order >= $length, 1, $length - $order);
+    $replace     : nth($arr, $order);
+    $column      : string.split($replace, ':', $limit: 1);
+    $replaceWord : '';
+  
+    @if( length($column) > 1) {
+      $replaceWord : str-insert( nth($column, 1), $append + ':' + nth($column, -1), $pos);
+    } @else {
+      $replaceWord : str-insert($replace, $append, $pos)
+    }
+    
+    $reArray : set-nth($arr, $order , $replaceWord);
+    $list    : join((),$reArray, $separator: space);
+    
+    @return $list;
+  }
+  
+  // @mixin
+  /*!
+      @param {String} $append: 추가할 class 또는 element
+      @param {Number} $pos: 선택 된 클래스 뒤에 append할지 앞에 append할지 선택
+  */
+  @mixin append($append, $order: 1, $pos: -1 ) {
+    $self: #{&};
+  
+    @at-root #{split($self, $append, $order, $pos)} {
+          @content;
+      }
+  }
