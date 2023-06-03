@@ -36,7 +36,7 @@
 
     <!-- input select -->
     <div class="inp">
-        <label for="">2</label>
+        <label for="">2<br>2</label>
         <button type="button" role="">
             선택
         </button>
@@ -54,48 +54,94 @@
 </div>
 
 <button type="button" class="stack-btn">stack focus</button>
+<button type="button" class="focus-btn">inp focus</button>
+<button type="button" class="error-btn">inp error</button>
 
 <script>
+'use strict';
 $(function(){
-    const $stack = $('.inp-stack');
-    const $stackItem = $stack.find('.inp');
     const $stackBtn = $('.stack-btn');
     let count = 0;
-    let itemH = 0;
-    
-    stack(0);
 
+    $('.inp-stack .inp').eq(0).stack();
     
     $stackBtn.on('click', function(e){
         e.preventDefault();
-        count = (count < $stackItem.length) ? count += 1 : count;
-
-        stack(count);
-
+        count = (count < $('.inp-stack .inp').length) ? count += 1 : count;
+        $('.inp-stack .inp').eq(count).stack();
     });
 
-
-    function stack(idx){
-        $stackItem.eq(idx).addClass('active');
-        itemH += $stackItem.eq(idx).outerHeight();
-        $stack.css({'--stack-height': itemH});
-    }
-
-    const test = new stack();
+    $('.focus-btn').on('click', function(e){
+        e.preventDefault();
+        $('.inp').addFocus();
+    })
+    
+    $('.error-btn').on('click', function(e){
+        e.preventDefault();
+        $('.inp').addError();
+    })
 });
 
-$.fn.stack = function(){
-    return this.each(function(){
-        // const $stackItem = $(this);
-        // const $stackBtn = $('.stack-btn');
-        // let count = 0;
-        // let itemH = 0;
+$.fn.extend ({
+    addSuccess: function(){
+        return this.each(function(){
+            const $this = $(this);
+            $this.addClass('success').find('input').focus();
+        });
+    },
+    addError: function(){
+        return this.each(function(){
+            const $this = $(this);
+            $this.addClass('error').find('input').focus();
+        });
+    },
+    addFocus: function(){
+        return this.each(function(){
+            const $this = $(this);
+            $this.addClass('focus').find('input').focus();
+        });
+    },
+    stack: function() {
+        return this.each(function(){
+            const $this = $(this);
+            const $parent = $this.closest('.inp-stack');
+            let itemH = 0;
 
-        // $stackItem.eq(idx).addClass('active');
-        // itemH += $stackItem.eq(idx).outerHeight();
-        // $stack.css({'--stack-height': itemH});
+            if ( $this.prevAll().length ) {
+                itemH += $this.outerHeight();
+                $this.prevAll().each(function(i, el){
+                    itemH += $(el).outerHeight();
+                });
+            } else {
+                itemH = $parent.find('.inp').eq(0).outerHeight();
+            }
 
-        console.log(this);
-    });
-}
+            $this
+            .addClass('active focus').siblings().removeClass('focus')
+            .closest('.inp-stack').css({'--stack-height': `${itemH}px`});
+            
+        });
+    }
+})
+// $.fn.stack = function(){
+//     return this.each(function(){
+//         const $this = $(this);
+//         const $parent = $this.closest('.inp-stack');
+//         let itemH = 0;
+
+//         if ( $this.prevAll().length ) {
+//             itemH += $this.outerHeight();
+//             $this.prevAll().each(function(i, el){
+//                 itemH += $(el).outerHeight();
+//             });
+//         } else {
+//             itemH = $parent.find('.inp').eq(0).outerHeight();
+//         }
+
+//         $this
+//         .addClass('active focus').siblings().removeClass('focus')
+//         .closest('.inp-stack').css({'--stack-height': `${itemH}px`});
+        
+//     });
+// }
 </script>

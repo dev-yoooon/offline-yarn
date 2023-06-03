@@ -80,6 +80,7 @@ const scss = async () => {
     .pipe(sass({
       outputStyle: 'expanded'
     })).on('error', sass.logError)
+    .pipe($.autoprefixer())
     .pipe($.prettier())
     .pipe($.if(!isProduct, $.sourcemaps.write()))
     .pipe(dest(dir.dist.css), {sourcemaps: '.'})
@@ -87,7 +88,7 @@ const scss = async () => {
 }
 
 const image = async () => {
-  return src([dir.src.images], {since: lastRun(image)})
+  return src([dir.src.images])
     .pipe($.newer(base.dist))
 		.pipe($.cached(base.dist))
     .pipe(dest(dir.dist.images))

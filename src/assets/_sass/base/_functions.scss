@@ -1,0 +1,11 @@
+@charset 'utf-8';
+
+@function icon($iconName, $color:555555) {
+    $iconList: ( 
+        check: 'icon_check.svg',
+        checkbox: 'icon_checkbox.svg',
+        plus: 'icon_add.svg',
+    );
+  $icon: map-get($iconList, $iconName);
+  @return mask-image: url('../images/#{$icon}');
+}
