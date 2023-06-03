@@ -53,6 +53,7 @@
     "storybook": "^7.0.9"
   },
   "dependencies": {
+    "gulp-cli": "^2.3.0",
     "ip": "^1.1.8"
   }
 }

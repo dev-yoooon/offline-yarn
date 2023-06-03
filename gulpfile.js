@@ -51,11 +51,17 @@ const server = async () => {
 const html = async () => { 
   return src([dir.src.html])
 		.pipe($.plumber())
+    .pipe($.replace('\&lt\;', '\<'))
+    .pipe($.replace('\&gt\;', '\>'))
+    .pipe($.replace('<pre class="language-markup"><code>', '<script type="text/plain" class="language-markup">'))
+    .pipe($.replace('</code></pre>', '</script>'))
     .pipe($.fileInclude())
     .pipe($.htmlTagInclude())
     .pipe($.ejs())
-    // .pipe($.prettier())
-    .pipe($.beautify.html({}))
+    .pipe($.prettier())
+    .pipe($.beautify.html({
+      inline: ['<svg>', '<path>']
+    }))
     .pipe($.changed(base.dist, { hasChanged: $.changed.compareContents }))
     .pipe(dest(base.dist))
     .pipe($.connect.reload())
