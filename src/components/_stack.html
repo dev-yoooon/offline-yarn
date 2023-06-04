@@ -1,7 +1,9 @@
 <!-- input text -->
-<div class="inp">
+<div class="inp" style="width: 200px">
     <label for="">input text</label>
-    <input type="text">    
+    <div class="inp-group">
+        <input type="text" class="change-text" style="font-size: 24px" value="">
+    </div>
 </div>
 <hr>
 <!-- input select -->
@@ -80,6 +82,27 @@ $(function(){
         e.preventDefault();
         $('.inp').addError();
     })
+
+    // change text field
+    const $changeInp = $('.change-text');
+    const fontSize = Number($('.change-text').css('font-size').replace('px', ''));
+    const $dummyDiv = $(`<div class="dummy-text" style="position:absolute;left:0;font-size:${fontSize}px;visibility:hidden;z-index:-1;" />`)
+    $changeInp.after($dummyDiv);
+
+    $changeInp.on('keyup', function(e){
+        const $this = $(this);
+        const val = $this.val();
+        const w = $this.outerWidth();
+        const testW = $dummyDiv.outerWidth();
+        const ratio = (w / testW);
+        let size = (fontSize * ratio);
+
+        
+        size = Math.min(fontSize, Math.max(0, Math.floor(size) - 0.5));
+        $dummyDiv.text(val);
+        $this.css('font-size', size);
+
+    });
 });
 
 $.fn.extend ({
