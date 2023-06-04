@@ -56,7 +56,7 @@ $font: (
 @mixin append($append, $order: 1, $pos: -1 ) {
   $self: #{&};
 
-  @at-root #{fn.split($self, $append, $order, $pos)} {
+  @at-root #{split($self, $append, $order, $pos)} {
 		@content;
 	}
 }

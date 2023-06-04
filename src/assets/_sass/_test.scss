@@ -1,0 +1,49 @@
+
+.test-h {
+    height: 3000px;
+    background-color: coral;
+}
+
+#content {
+    padding-top: rem(52);
+}
+
+// search
+.search{
+    position: sticky;
+    top: (52 + 20) * 1px;
+    border: 1px solid #ddd;
+    margin-top: 20px;
+    height: 52px;
+    
+    &::before{
+        content: '';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        padding-top: 52px;
+    }
+
+    .inp-group {
+        display: flex;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        transition: width .25s;
+
+        @include append('.active') {
+            width: 50%;
+        }
+    }
+    input {
+        width: 100%;
+    }
+    button {
+        flex-shrink: 0;
+        width: 24px;
+        height: 24px;
+        background-color: red;
+    }
+}

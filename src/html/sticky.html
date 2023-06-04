@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="@@webRoot/assets/css/common.css">
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" crossorigin="anonymous"></script>
+    <script src="@@webRoot/assets/js/gsap.min.js"></script>
+    <script src="@@webRoot/assets/js/ScrollTrigger.min.js"></script>
+    <script src="@@webRoot/assets/js/ScrollToPlugin.min.js"></script>
+</head>
+<body>
+    <%- include('@@webRoot/html/inc/_gnb.html') %>
+
+    <div id="content">
+        <div class="search">
+            <div class="inp-group">
+                <input type="text">
+                <button type="button"></button>
+            </div>
+        </div>
+        <div class="test-h"></div>
+    </div>
+
+<script>
+// gsap.registerPlugin(ScrollTrigger);
+// gsap.to(".search", {
+//   scrollTrigger: {
+//     trigger: ".search",
+//     toggleClass: "active",
+//     start: "left top"
+//   }
+// });
+
+$(function(){
+const $searchTop = $('.search').offset().top; 
+
+$(window).scroll(function(){
+    const $winScr = $(window).scrollTop();
+
+    if($winScr >= $searchTop) {
+        $('.search').addClass('active');
+    }else {
+        $('.search').removeClass('active');
+    }
+})
+
+gsap.to(window, {duration: 1, scrollTo: {y: ".test-h", offsetY: 50}});
+
+})
+</script>
+</body>
+</html>

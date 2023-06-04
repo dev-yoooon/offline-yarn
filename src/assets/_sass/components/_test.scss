@@ -1,0 +1,102 @@
+.inp {
+    position: relative;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    background-color: #fff;
+
+    &.focus {
+        border-color: green;
+    }
+
+    @at-root .inp-stack & {
+        border-color: transparent;
+        
+        opacity: 0;
+        visibility: hidden;
+        position: relative;
+        transition: all .25s .1s;
+        &.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        &:not(:last-child)::after {
+            content: '';
+            display: block;
+            position: absolute;
+            left: 20px;
+            right: 20px;
+            bottom: 0;
+            height: 1px;
+            background-color: #ddd;
+        }
+
+        &.focus {
+            @extend .focus;
+        }
+    }
+
+    &-stack {
+        --stack-height: 0px;
+        overflow: hidden;
+        height: var(--stack-height);
+        position: relative;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column-reverse;
+
+        transition: all .25s;
+    }
+    label {
+        display: block;
+        margin-bottom: 10px;
+    }
+    input {
+        border: 1px solid #f1f1f1;
+    }
+
+}
+
+%pse {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+%pseAbsolte {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.icon {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    --icon-fill: red;
+
+    &-add-plus {
+        display: block;
+        position: relative;
+        background-color: red;
+        border-radius: 50%;
+        --add-file-stroke: yellow;
+        --add-file-plus: green;
+        &::before {
+            @extend %pse;
+            mask: url(../images/icon_add.svg) no-repeat center / 100% auto;
+            background-color: var(--add-file-stroke);
+        }
+        &::after {
+            @extend %pse;
+            @extend %pseAbsolte;
+            mask: url(../images/icon_add-plus.svg) no-repeat center / 100% auto;
+            background-color: var(--add-file-plus);
+        }
+    }
+
+    &-check {
+        mask: url(../images/icon_check.svg) no-repeat center / 100% auto;
+        background-color: var(--icon-fill);
+    }
+}

@@ -5,6 +5,7 @@
 @import 'components/buttons';
 @import 'components/input';
 @import 'gnb';
+@import 'test';
 
 h1 {
 	@include font('xxl', bold);
@@ -26,3 +27,5 @@ main {
 		border: 1px solid red;
 	}
 }
+
+
