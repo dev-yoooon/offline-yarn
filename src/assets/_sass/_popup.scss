@@ -1,0 +1,52 @@
+.popup {
+    &-wrap {
+        display: none;
+        position: fixed;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 100%;
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(#000, .5);
+            opacity: 0;
+            @include append('.open'){
+                opacity: 1;
+                transition: opacity .15s;
+            }
+        }
+
+
+        &.open {
+            display: block;
+        }
+    }
+
+    & {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 50%;
+        background-color: #fff;
+        border-radius: 16px 16px 0 0;
+        overflow: auto;
+        transform: translateY(100%);
+        transition: transform .35s ease-in-out;
+        
+        @include append('.open ', $pos: 1) {
+            transform: translateY(0);
+        }
+    }
+
+    &-cont {
+        height: 1000px;
+    }
+    
+}

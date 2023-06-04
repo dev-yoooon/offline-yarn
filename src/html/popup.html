@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../assets/css/common.css">
+
+    <% 
+    const inc = `@@webRoot/html/inc`;
+    const components = '@@webRoot/components';
+    const template = '@@webRoot/html/template'
+    _%>
+    <link rel="stylesheet" href="@@webRoot/assets/css/common.css">
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" crossorigin="anonymous"></script>
+    <script src="@@webRoot/assets/js/gsap.min.js"></script>
+    <script src="@@webRoot/assets/js/ScrollTrigger.min.js"></script>
+    <script src="@@webRoot/assets/js/ScrollToPlugin.min.js"></script>
+</head>
+<body>
+    <div id="wrap">
+        <button type="button" aria-haspopup="dialog" class="btn-popup">Button popup</button>
+    </div>
+    <!-- popup -->
+    <div class="popup-wrap" role="dialog" aria-modal="true">
+        <div class="popup">
+            <div class="popup-header"></div>
+            <div class="popup-cont"></div>
+            <div class="popup-footer">
+                <button type="button" class="btn-close" aria-label="close">dddddddd</button>
+            </div>
+        </div>
+    </div>
+    <!-- //popup -->
+
+<script>
+"use strict";
+
+$(function(){
+
+let dbd = {};
+window.dbd = dbd;
+
+const $pop = $('.popup-wrap').detach();
+$('.btn-popup').on('click', function(){
+    $('#wrap').after($pop);
+    $pop.popup('open', this);
+});
+
+$(document).on('click', '.popup-wrap .btn-close', function(){
+    $('.popup-wrap').popup('close');
+});
+
+});
+
+$.fn.extend({
+    ani: function(options){
+        return this.each(function(){
+            const $this = $(this);
+            const opt = $.extend({}, options);
+
+            gsap.to($this, opt);
+        })
+    },
+    popup: function(state, btn){
+        return this.each(function(){
+            const $this = $(this);
+            const $wrap = $this.closest('.popup-wrap');
+            const $content = $wrap.find('.popup');
+            const $prevBtn = $(btn);
+
+            if(state == 'open') {
+                $wrap.ani({duration: 0.1, display: 'block', onComplete: () => {
+                    $this.addClass('open');
+                    $content.attr({'tabindex': '0'}).focus();
+                    $('#wrap *').attr({'aria-hidden': 'true', 'tabindex': '-1'});
+                }});
+                window.dbd.focusBtn = $prevBtn;
+            } 
+            if( state == 'close' ) {
+                $wrap.ani({duration: 0.1, display: 'none', onComplete: () => {
+                    $this.removeClass('open');
+                    $content.removeAttr('tabindex');
+                    $('#wrap *').removeAttr('aria-hidden tabindex');
+                    window.dbd.focusBtn.focus();
+                    window.dbd.focusBtn = null;
+                }});
+            }
+            
+        })
+    },
+})
+</script>
+</body>
+</html>

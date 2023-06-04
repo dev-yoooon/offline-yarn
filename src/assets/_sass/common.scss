@@ -6,6 +6,7 @@
 @import 'components/input';
 @import 'gnb';
 @import 'test';
+@import 'popup';
 
 h1 {
 	@include font('xxl', bold);
