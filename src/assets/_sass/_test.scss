@@ -47,3 +47,36 @@
         background-color: red;
     }
 }
+
+.table {
+    overflow: auto;
+    width: 360px;
+    height: 300px;
+    &.sticky-table {
+        table {
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+        th {
+            background: yellow;
+            padding: 20px 10px;
+            position: sticky;
+            top: 0;
+            z-index: 1;
+
+            &:first-child {
+                position: sticky;
+                left: 0;
+                // background-color: coral;
+            }
+        }
+        td {
+            padding: 20px 10px;
+            &:first-child {
+                position: sticky;
+                left: 0;
+                background-color: coral;
+            }
+        }
+    }
+}

@@ -19,29 +19,30 @@
     <script src="@@webRoot/assets/js/ScrollToPlugin.min.js"></script>
 </head>
 <body>
-    <div id="wrap">
-        <button type="button" aria-haspopup="dialog" class="btn-popup">Button popup</button>
+<div id="wrap">
+    
+    <div class="table sticky-table">
+        <table>
+            <thead>
+                <tr>
+                    <% for(let i=0; i<6; i++) { %>
+                    <th>depth <%= i %></th>
+                    <% } %>
+                </tr>
+            </thead>
+            <tbody>
+                <% for(let i=0; i<6; i++) { %>
+                <tr>
+                    <% for(let i=0; i<6; i++) { %>
+                    <td>depth <%= i %></td>
+                    <% } %>
+                </tr>
+                <% } %>
+            </tbody>
+        </table>
     </div>
-    <!-- popup -->
-    <div class="popup-wrap" role="dialog" aria-modal="true">
-        <div class="popup">
-            <div class="popup-header"></div>
-            <div class="popup-main">
-                <div class="popup-tit">
 
-                </div>
-                <div class="popup-content">
-                    <a href="#!">button</a>
-                    <a href="#!">button</a>
-                    <a href="#!">button</a>
-                </div>
-            </div>
-            <div class="popup-footer">
-                <button type="button" class="btn-close" aria-label="close">dddddddd</button>
-            </div>
-        </div>
-    </div>
-    <!-- //popup -->
+</div>
 
 <script>
 "use strict";
@@ -54,20 +55,12 @@ window.dbd = dbd;
 const $pop = $('.popup-wrap').detach();
 $('.btn-popup').on('click', function(){
     $('#wrap').after($pop);
-    $pop.popup('open', {
-        prevBtn : this,
-        on: function(){
-            console.log(this);
-        }
-    });
-
-
+    $pop.popup('open', this);
 });
 
 $(document).on('click', '.popup-wrap .btn-close', function(){
     $('.popup-wrap').popup('close');
 });
-
 
 });
 
@@ -80,44 +73,34 @@ $.fn.extend({
             gsap.to($this, opt);
         })
     },
-    popup: function(state, options){
+    popup: function(state, btn){
         return this.each(function(){
             const $this = $(this);
             const $wrap = $this.closest('.popup-wrap');
             const $content = $wrap.find('.popup');
-            const opt = $.extend({
-                init: function(){},
-                on: function(){}
-            }, options);
-            
-            
+            const $prevBtn = $(btn);
+
             if(state == 'open') {
                 $wrap.ani({duration: 0.1, display: 'block', onComplete: () => {
                     $this.addClass('open');
                     $content.attr({'tabindex': '0'}).focus();
                     $('#wrap *').attr({'aria-hidden': 'true', 'tabindex': '-1'});
-                    opt.on.call($this);
                 }});
-                window.dbd.focusBtn = opt.prevBtn;
-
+                window.dbd.focusBtn = $prevBtn;
             } 
             if( state == 'close' ) {
-                const $prevBtn = $(window.dbd.focusBtn);
                 $wrap.ani({duration: 0.1, display: 'none', onComplete: () => {
                     $this.removeClass('open');
                     $content.removeAttr('tabindex');
                     $('#wrap *').removeAttr('aria-hidden tabindex');
-                    $prevBtn.focus();
+                    window.dbd.focusBtn.focus();
                     window.dbd.focusBtn = null;
-                    opt.on.call($this);
                 }});
             }
             
         })
     },
-});
-
-
+})
 </script>
 </body>
 </html>

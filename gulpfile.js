@@ -1,10 +1,11 @@
 
 const { src, dest, series, parallel, watch, task, lastRun } = require('gulp');
 const sass = require('gulp-sass')(require('sass'));
-// const path = require('path');
+const path = require('path');
 const $ = require('gulp-load-plugins')();
 const ip = require('ip');
 let isProduct = false;
+const through = require('through2')
 
 const setProduct = async () => {
   return isProduct = true;
@@ -48,6 +49,8 @@ const server = async () => {
   })
 }
 
+const incSrc = '/Users/yoooon/Documents/offline-yarn/src';
+
 const html = async () => { 
   return src([dir.src.html])
 		.pipe($.plumber())
@@ -55,7 +58,13 @@ const html = async () => {
     .pipe($.replace('\&gt\;', '\>'))
     .pipe($.replace('<pre class="language-markup"><code>', '<script type="text/plain" class="language-markup">'))
     .pipe($.replace('</code></pre>', '</script>'))
-    .pipe($.fileInclude())
+    .pipe($.fileInclude({
+      context: {
+        comp: `${incSrc}/components`,
+        temp: `${incSrc}/template`,
+        inc: ''
+      }
+    }))
     .pipe($.htmlTagInclude())
     .pipe($.ejs())
     .pipe($.prettier())
