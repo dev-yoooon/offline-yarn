@@ -45,62 +45,29 @@
 </div>
 
 <script>
-"use strict";
 
 $(function(){
 
-let dbd = {};
-window.dbd = dbd;
-
-const $pop = $('.popup-wrap').detach();
-$('.btn-popup').on('click', function(){
-    $('#wrap').after($pop);
-    $pop.popup('open', this);
-});
-
-$(document).on('click', '.popup-wrap .btn-close', function(){
-    $('.popup-wrap').popup('close');
-});
-
-});
-
-$.fn.extend({
-    ani: function(options){
-        return this.each(function(){
-            const $this = $(this);
-            const opt = $.extend({}, options);
-
-            gsap.to($this, opt);
+    const isScroll = $('.sticky-table').outerWidth() < $('.sticky-table table').outerWidth() ? true : false;
+    if( isScroll ) {
+        $('.sticky-table').on('scroll', function(){
+            $(this)._toggleClass('scroll', $(this).scrollLeft() > 0);
         })
-    },
-    popup: function(state, btn){
-        return this.each(function(){
-            const $this = $(this);
-            const $wrap = $this.closest('.popup-wrap');
-            const $content = $wrap.find('.popup');
-            const $prevBtn = $(btn);
+    }
 
-            if(state == 'open') {
-                $wrap.ani({duration: 0.1, display: 'block', onComplete: () => {
-                    $this.addClass('open');
-                    $content.attr({'tabindex': '0'}).focus();
-                    $('#wrap *').attr({'aria-hidden': 'true', 'tabindex': '-1'});
-                }});
-                window.dbd.focusBtn = $prevBtn;
-            } 
-            if( state == 'close' ) {
-                $wrap.ani({duration: 0.1, display: 'none', onComplete: () => {
-                    $this.removeClass('open');
-                    $content.removeAttr('tabindex');
-                    $('#wrap *').removeAttr('aria-hidden tabindex');
-                    window.dbd.focusBtn.focus();
-                    window.dbd.focusBtn = null;
-                }});
-            }
-            
-        })
-    },
-})
+});
+
+$.fn._toggleClass = function(addClass, condition){
+    return this.each(function(){
+        
+        if(condition){
+            $(this).addClass(addClass);
+        }else{
+            $(this).removeClass(addClass);
+        }
+
+    })
+}
 </script>
 </body>
 </html>

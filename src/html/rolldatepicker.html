@@ -1,0 +1,68 @@
+
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<title>rolldate Date Picker Examples</title>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="@@webRoot/assets/css/common.css">
+</head>
+
+<body>
+	<div class="jumbotron">
+		<div class="container">
+			<h1>rolldate Date Picker Examples</h1>
+		</div>
+	</div>
+	<div class="container">
+		<h4><strong>Date Format</strong></h4>aaa
+		<div class="row">
+			<div class="form-group clearfix">
+				<div class="col-xs-6">
+					<input readonly class="form-control" type="text" id="date-group2-1" placeholder="MM-YYYY">
+				</div>
+				<div class="col-xs-6">
+					<input readonly class="form-control" type="date" placeholder="system date">
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="../assets/js/roll-datepicker.js"></script></body>
+	<script>
+		window.onload = function() {
+			var lang = {
+				title: '연월',
+				cancel: '취소',
+				confirm: '확인',
+			}
+
+			const date = new Rolldate({
+				el: '#date-group2-1',
+				format: 'YYYY-MM-DD',
+				beginYear: 2000,
+				endYear: 2100,
+                lang: lang,
+				init: function() {
+                    console.log('init');
+				},
+				moveEnd: function(scr) {
+					const idx = scr.getSelectedIndex();
+					$(scr.items).eq(idx).addClass('active').siblings().removeClass('active');
+				},
+				confirm: function(date) {
+					console.log(date)
+					console.log('Confirmed');
+				},
+				cancel: function() {
+					console.log('Canceled');
+				}
+			});
+		}
+	</script>
+
+</html>

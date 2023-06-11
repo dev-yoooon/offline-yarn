@@ -80,3 +80,32 @@
         }
     }
 }
+
+.rolldate-container  {
+    .rolldate-panel{
+        .rolldate-dim {
+            display: none;
+        }
+        .rolldate-wrapper {
+            &::before {
+                content: '';
+                position: absolute;
+                border-left-width: 0;
+                right: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                background-color: rgba(yellow, .5);
+            }
+            li {
+                transform: rotate(0) !important;
+    
+                &.active {
+                    color: red;
+                }
+                &.on {
+                    color: green;
+                }
+            }
+        }
+    }
+}
