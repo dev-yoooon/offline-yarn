@@ -49,4 +49,30 @@
         height: 1000px;
     }
     
+    @include append('.test ', $pos:1) {
+        top: 50px;
+        bottom: 50px;
+        left: 50px;
+        right: 50px;
+        height: auto;
+        width: auto;
+        max-height: 600px;
+        border-radius: 16px;
+
+        display: flex;
+        flex-direction: column;
+        &-header {
+            padding: 20px;
+            border-bottom: 1px solid #ddd;
+        }
+        &-main {
+            flex: 1;
+            overflow: auto;
+            padding: 0 20px;
+        }
+        &-footer {
+            padding: 20px;
+            border-top: 1px solid #ddd;
+        }
+    }
 }
