@@ -1,44 +1,82 @@
 @charset 'utf-8';
 
 .popup {
-	position: fixed;
-	top: 0;
-	width: 100%;
-	height: 100%;
-	overflow: hidden;
-	&::after{
-		content: '';
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		background-color: rgba(0,0,0,.25);
-	}
-	.bottom-sheet {
-		position: absolute;
-		bottom: 0;
-		z-index: 1;
-		width: 100%;
-		box-sizing: border-box;
-		border-top-left-radius: 20px;
-		border-top-right-radius: 20px;
-		background-color: #fff;
-		padding: 20px;
-		display: flex;
-		flex-direction: column;
-	}
-	&-footer {
-		margin-top: 20px;
-		button {
-			width: 100%;
-			height: 40px;
-			border-radius: 10px;
-			background-color: green;
-			color: #fff;
-			font-weight: bold;
-		}
-	}
+    &-wrap {
+        display: none;
+        position: fixed;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 100%;
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(#000, .5);
+            opacity: 0;
+            @include append('.open'){
+                opacity: 1;
+                transition: opacity .15s;
+            }
+        }
+
+
+        &.open {
+            display: block;
+        }
+    }
+
+    & {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 50%;
+        background-color: #fff;
+        border-radius: 16px 16px 0 0;
+        overflow: auto;
+        transform: translateY(100%);
+        transition: transform .35s ease-in-out;
+        
+        @include append('.open ', $pos: 1) {
+            transform: translateY(0);
+        }
+    }
+
+    &-cont {
+        height: 1000px;
+    }
+
+    @include append('.test ', $pos:1) {
+        top: 50px;
+        bottom: 50px;
+        left: 50px;
+        right: 50px;
+        height: auto;
+        width: auto;
+        max-height: 600px;
+        border-radius: 16px;
+
+        display: flex;
+        flex-direction: column;
+        &-header {
+            padding: 20px;
+            border-bottom: 1px solid #ddd;
+        }
+        &-main {
+            flex: 1;
+            overflow: auto;
+            padding: 0 20px;
+        }
+        &-footer {
+            padding: 20px;
+            border-top: 1px solid #ddd;
+        }
+    }
 }
 .label {
 	display: block;
@@ -91,4 +129,5 @@
 	option {
 		width: 100%;
 	}
+       
 }
