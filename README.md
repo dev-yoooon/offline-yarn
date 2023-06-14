@@ -59,3 +59,5 @@ https://mebadong.tistory.com/33
 https://han-py.tistory.com/492 <br>
 https://han-py.tistory.com/492 <br>
 
+https://service.toss.im/accounts/consents/user-external?code=JtE1BggXTnY%2Bh1UMCwC0zA%3D%3D&messenger_identifier=1rN8ch%2FDHUnbVS%2FB%2BVaIQJ8kEySkiJTksmve6daJWSW5n8rBTCT7u2lCJRdLtc1dlVcbFz08xWesyaBdWrXB8lAImTZBgf6JTZNXY1VBzgE%3D
+
