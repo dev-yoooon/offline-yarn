@@ -30,6 +30,7 @@
     "gulp-changed": "^4.0.3",
     "gulp-changed-in-place": "^2.3.0",
     "gulp-clean": "^0.4.0",
+    "gulp-cli": "^2.3.0",
     "gulp-concat": "^2.6.1",
     "gulp-connect": "^5.7.0",
     "gulp-ejs": "^5.1.0",
@@ -54,7 +55,6 @@
     "storybook": "^7.0.9"
   },
   "dependencies": {
-    "gulp-cli": "^2.3.0",
     "ip": "^1.1.8"
   }
 }
