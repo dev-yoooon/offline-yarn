@@ -29,6 +29,7 @@
     "gulp-cached": "^1.1.1",
     "gulp-changed": "^4.0.3",
     "gulp-changed-in-place": "^2.3.0",
+    "gulp-chmod": "^3.0.0",
     "gulp-clean": "^0.4.0",
     "gulp-cli": "^2.3.0",
     "gulp-concat": "^2.6.1",
