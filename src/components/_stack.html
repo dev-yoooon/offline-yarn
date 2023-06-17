@@ -28,10 +28,10 @@
 
 <hr>
 <!-- stack -->
-<div class="inp-stack">
+<div class="inp-stack ani">
      
     <!-- input text -->
-    <div class="inp focus active">
+    <div class="inp">
         <label for="">1</label>
         <input type="text">    
     </div>
@@ -140,7 +140,7 @@ $.fn.extend ({
             }
 
             $this
-            .addClass('active focus').siblings().removeClass('focus')
+            .addClass('focus show').siblings().removeClass('focus')
             .closest('.inp-stack').css({'--stack-height': `${itemH}px`});
             
         });

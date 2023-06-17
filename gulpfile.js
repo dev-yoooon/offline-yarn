@@ -72,7 +72,7 @@ const html = async () => {
       inline: ['<svg>', '<path>']
     }))
     .pipe($.changed(base.dist, { hasChanged: $.changed.compareContents }))
-    .pipe(chmod(0o755))
+    // .pipe(chmod(0o755))
     .pipe(dest(base.dist))
     .pipe($.connect.reload())
 }

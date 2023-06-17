@@ -9,18 +9,18 @@
         border-color: green;
     }
 
-    @at-root .inp-stack & {
+    @at-root .inp-stack.ani & {
         border-color: transparent;
         
         opacity: 0;
         visibility: hidden;
         position: relative;
-        transition: all .25s .1s;
-        &.active {
+        transition: all .45s;
+        &.show {
             opacity: 1;
             visibility: visible;
         }
-        &:not(:last-child)::after {
+        &:not(:first-child, .focus)::after {
             content: '';
             display: block;
             position: absolute;
@@ -33,7 +33,10 @@
 
         &.focus {
             @extend .focus;
+            z-index: 1;
+            transition: border .25s;
         }
+
     }
 
     &-stack {
@@ -41,12 +44,27 @@
         overflow: hidden;
         height: var(--stack-height);
         position: relative;
-        border: 1px solid #ddd;
-        border-radius: 8px;
+        // border: 1px solid #ddd;
+        // border-radius: 8px;
         display: flex;
         flex-direction: column-reverse;
+        margin: 0 30px;
 
         transition: all .25s;
+
+        &::before {
+            content: '';
+            display: block;
+            position: absolute;
+            z-index: 1;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            pointer-events: none;
+        }
     }
     label {
         display: block;
