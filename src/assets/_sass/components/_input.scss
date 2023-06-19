@@ -16,9 +16,11 @@
         visibility: hidden;
         position: relative;
         transition: all .45s;
+
         &.show {
             opacity: 1;
             visibility: visible;
+            transition-delay: .3s;;
         }
         &:not(:first-child, .focus)::after {
             content: '';

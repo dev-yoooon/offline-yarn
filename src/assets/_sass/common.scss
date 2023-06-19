@@ -31,3 +31,41 @@ main {
 }
 
 
+.accr {
+	margin: 20px;
+
+	li {
+		overflow: hidden;
+	}
+
+	.big {
+		display: none;
+	}
+	.active {
+		.small {
+			display: none;
+		}
+		.big {
+			display: block;
+		}
+	}
+	.btn {
+		display: block;
+		width: 100%;
+		padding: 10px ;
+	}
+
+	.cont {
+		overflow: hidden;
+		height: 0;
+		
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 10px;
+
+		button {
+			background-color: red;
+			padding: 10px;
+		}
+	}
+}
