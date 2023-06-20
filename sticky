@@ -1,0 +1,257 @@
+GALAXY.isSticky = (function(o) {
+    o.style.cssText = 'position:-webkit-sticky;position:sticky';
+    var sticky = !!(o.style.position == '-webkit-sticky' || o.style.position == 'sticky');
+    $('html').decideClass('sticky', sticky);
+    return sticky;
+})(document.createElement('div'));
+
+var isEdge = (/Edge\//i).test(navigator.userAgent);
+var isNewEdge = (/Edg\//i).test(navigator.userAgent);
+
+var faveSticky = function(el, option){
+    var $el = $(el);
+    var $window = $(window);
+    var $html = $('html');
+    var windowH = $window.height();
+    var $stickyInner = $el.find('.sticky-inner');
+    var elTop = $el.offset().top;
+    var elH = $el.height();
+    var innerH = $stickyInner.height();
+    var _moveArea;
+    var _positionTop;
+    var subNavH;
+    var onceFlag = false;
+    var defaults = {
+        supportIE: true,
+        top: 'auto',
+        preShow: null,
+        on: function(){},
+        onScroll: function(){},
+        off: function(){},
+        fadeIn: null
+    }
+    var options = $.extend({}, defaults, option);
+    var prevHeight = 0;
+    var prevScrDir = 0;
+    var scrDir = 0;
+
+    var _init = function () {
+        if ( !options.supportIE && ( $html.hasClass('ie') || isEdge ) )  { return false; }
+        setVar();
+        checkNav();
+        setPosition();
+        scroll();
+
+        GALAXY.resize(resize);
+        GALAXY.scrollFunctions.push(scroll);
+    };
+
+    var checkNav = function(){
+        var $subNav = ($('#subnav').length) ? $('#subnav') : $('.floating-navigation__wrap');
+        subNavH = $subNav.height();
+        return subNavH;
+    };
+
+    var setPosition = function (){
+        var contH = $stickyInner.outerHeight();
+        var align = options.top;
+        var posTop = parseInt($stickyInner.css('top'));
+
+        switch ( align ) {
+            case 'auto':
+                posTop = null;
+                break;
+
+            case 'top':
+                posTop = subNavH;
+                break;
+
+            case 'center':
+                posTop = ((windowH + subNavH) - contH) / 2;
+                break;
+
+            case 'bottom':
+                posTop = (windowH - contH);
+                break;
+
+            default:
+                posTop = parseInt(align);
+                break;
+        }
+
+        $stickyInner.css('top', posTop);
+        _positionTop = posTop;
+    };
+
+    var _positionTopFn = function(){
+        return _positionTop;
+    }
+
+    var scrollPosition = function(){
+        var _initPos, _startPos, _endPos, _baseShow, _ieEndPos, _fadeInPos,
+            scrollTop =  GALAXY.scrollTop;
+
+        if (options.preShow){
+            _baseShow = parseInt(options.preShow);
+        }else{
+            _baseShow = _positionTop;
+        }
+        _initPos = scrollTop >= elTop - (windowH + (windowH/2)) && scrollTop <= elTop + elH;
+        _startPos = scrollTop >= (elTop - _baseShow);
+        _endPos = scrollTop > elTop + elH + options.preShow;
+        _ieEndPos = scrollTop > elTop + elH - innerH - _positionTop;
+        _fadeInPos = scrollTop >= (elTop - windowH) && scrollTop <= elTop - _positionTop;
+
+        return {
+            init: _initPos,
+            on: _startPos,
+            off: _endPos,
+            ieEnd: _ieEndPos,
+            baseShow: _baseShow,
+            fadeInPos: _fadeInPos
+        }
+    }
+
+    var scrollInit = function(){
+        if( GALAXY.isSticky ) {
+            $html.addClass('is-sticky');
+        }else{
+            $html.addClass('is-fixed');
+        }
+
+        _moveArea = elH - innerH;
+        options.on.call($el);
+        setLowPosition();
+        initData = $el.data('sticky-init', true);
+
+        if(options.fadeIn){
+            $stickyInner.css('opacity', 0);
+        }
+
+        function setLowPosition(){
+            if($stickyInner.outerHeight() != innerH){
+                setVar();
+                setPosition();
+                window.caf(setLowPosition);
+            }else{
+                !initData && window.raf(setLowPosition);
+            }
+        }
+    };
+
+    var _flag = false;
+    var scroll = function () {
+        var scrPosition = scrollPosition();
+        var isInit = scrPosition.init;
+        var isShow = scrPosition.on;
+        var isHide = scrPosition.off;
+        var isIeEnd = scrPosition.ieEnd;
+        var _percent = 0;
+        var _scrollTop = 0;
+            initData = $el.data('sticky-init');
+
+        if ( isInit ) {
+            if( !initData ){ scrollInit(); }
+            if( isShow ){
+                _scrollTop = GALAXY.scrollTop - elTop + scrPosition.baseShow;
+                _percent = Math.min(1, _scrollTop / (_moveArea + scrPosition.baseShow));
+
+                $el.addClass('sticky-in');
+                _percent = Math.min(1, Math.max(0, _percent)).toFixed(3);
+                onceFlag = false;
+
+                if( !GALAXY.isSticky ){
+                    if(isIeEnd){
+                        $el.addClass('sticky-end');
+                    }else{
+                        $el.removeClass('sticky-end');
+                    }
+                }
+
+                options.onScroll.call($el, _percent, _scrollTop);
+
+            }else{
+                if( !GALAXY.isSticky ) { $el.removeClass('sticky-in'); }
+
+                if(!scrDir && !_flag){
+                    _flag = true;
+                    _percent = '0';
+                    options.onScroll.call($el, _percent, _scrollTop);
+                }
+                if(scrDir){
+                    _flag = false;
+                }
+
+            }
+
+            if(options.fadeIn && scrPosition.fadeInPos){
+                var _scrollTop = GALAXY.scrollTop - elTop + windowH;
+                var _percent = Math.min(1, _scrollTop / (windowH - _positionTop));
+                $stickyInner.css('opacity', _percent);
+            }
+
+            getScrDirection();
+
+        }else {
+            $el.removeClass('sticky-in');
+            $html.removeClass('is-sticky');
+            $el.data('sticky-init', false);
+        }
+
+        if(isHide && !onceFlag){
+            onceFlag = true;
+            options.off.call($el);
+        }
+    }
+
+    function getScrDirection(){
+        scrDir = prevScrDir <= GALAXY.scrollTop;
+
+        if( prevScrDir != GALAXY.scrollTop){
+            prevScrDir = GALAXY.scrollTop;
+        }
+    }
+
+    var _moveAreaFn = function(){
+        return _moveArea;
+    }
+
+    var setVar = function(){
+        elTop = $el.offset().top;
+        elH = $el.height();
+        innerH = $stickyInner.outerHeight();
+        windowH = $window.height();
+        $el.data('sticky-init', false);
+    }
+
+    var resize = function () {
+
+        if( GALAXY.prevSizeMode && GALAXY.prevSizeMode != GALAXY.sizeMode ){
+            setVar();
+            checkNav();
+            setPosition();
+            scroll();
+        }
+
+        if(prevHeight != GALAXY.areaHeight){
+            prevHeight = GALAXY.areaHeight;
+            setVar();
+            setPosition();
+        }
+    }
+
+    GALAXY.loadFunctions.push(_init);
+
+    return {
+        el: $el,
+        moveArea: _moveAreaFn,
+        top: _positionTopFn
+    }
+
+}
+
+$.fn.faveSticky = function(options){
+    return this.each(function () {
+        $(this).data('faveSticky', new faveSticky(this, options));
+    });
+}
