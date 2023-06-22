@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="@@webRoot/assets/css/common.css">
+  <script src="@@webRoot/assets/js/plugin.js"></script>
+</head>
+<body>
+    <div id="wrap">
+        <button type="button" aria-haspopup="dialog" class="btn-popup">Button popup</button>
+    </div>
+    <!-- popup -->
+    <div class="popup-wrap open" role="dialog" aria-modal="true">
+        <div class="popup bottomsheet">
+            <div class="popup-header">TITLE</div>
+            <div class="popup-main">
+                <div class="popup-content">
+                    <div class="dummy">ratings...</div>
+                    <textarea class="textarea" name="" id="" cols="30" rows="10"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $(function(){
+        $bottom = $('.bottom-sheet');
+        $select = $bottom.find('.select-wrap label');
+        $ul = $bottom.find('ul');
+
+        $select.on('click', function(e){
+            e.preventDefault();
+
+            
+            if($(this).hasClass('active')){
+                $(this).removeClass('active');
+                $ul.slideUp();
+            }else{
+                $(this).addClass('active');
+                $ul.slideDown();
+            }
+        })
+
+    })
+
+    $(function(){
+
+let dbd = {};
+window.dbd = dbd;
+
+const $pop = $('.popup-wrap').detach();
+$('.btn-popup').on('click', function(){
+    $('#wrap').after($pop);
+    $pop.popup('open', {
+        prevBtn : this,
+        on: function(){
+            console.log(this);
+        }
+    });
+
+
+});
+
+$(document).on('click', '.popup-wrap .btn-close', function(){
+    $('.popup-wrap').popup('close');
+});
+
+
+});
+
+$.fn.extend({
+    ani: function(options){
+        return this.each(function(){
+            const $this = $(this);
+            const opt = $.extend({}, options);
+
+            gsap.to($this, opt);
+        })
+    },
+    popup: function(state, options){
+        return this.each(function(){
+            const $this = $(this);
+            const $wrap = $this.closest('.popup-wrap');
+            const $content = $wrap.find('.popup');
+            const opt = $.extend({
+                init: function(){},
+                on: function(){}
+            }, options);
+            
+            
+            if(state == 'open') {
+                $wrap.ani({duration: 0.1, display: 'block', onComplete: () => {
+                    $this.addClass('open');
+                    $content.attr({'tabindex': '0'}).focus();
+                    $('#wrap *').attr({'aria-hidden': 'true', 'tabindex': '-1'});
+                    opt.on.call($this);
+                }});
+                window.dbd.focusBtn = opt.prevBtn;
+
+            } 
+            if( state == 'close' ) {
+                const $prevBtn = $(window.dbd.focusBtn);
+                $wrap.ani({duration: 0.1, display: 'none', onComplete: () => {
+                    $this.removeClass('open');
+                    $content.removeAttr('tabindex');
+                    $('#wrap *').removeAttr('aria-hidden tabindex');
+                    $prevBtn.focus();
+                    window.dbd.focusBtn = null;
+                    opt.on.call($this);
+                }});
+            }
+            
+        })
+    },
+});
+</script>
+</body>
+</html>

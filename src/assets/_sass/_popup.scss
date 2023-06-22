@@ -47,6 +47,10 @@
         }
     }
 
+    &-header {
+        padding: 20px;
+    }
+
     &-cont {
         height: 1000px;
     }
@@ -130,4 +134,28 @@
 		width: 100%;
 	}
        
+}
+
+.bottomsheet {
+    top: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    box-sizing: border-box;
+    padding: 0 20px;
+    height: auto;
+
+    .dummy {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background-color: coral;
+        align-items: center;
+    }
+    textarea{
+        margin-top: 20px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        width: 100%;
+    }
 }
