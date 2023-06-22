@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../assets/css/common.css" />
+
+    <link rel="stylesheet" href="../assets/css/common.css" />
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" crossorigin="anonymous"></script>
+    <script src="../assets/js/gsap.min.js"></script>
+    <script src="../assets/js/ScrollTrigger.min.js"></script>
+    <script src="../assets/js/ScrollToPlugin.min.js"></script>
+</head>
+
+<body>
+    <div id="wrap">
+        <div class="table sticky-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>depth 0</th>
+
+                        <th>depth 1</th>
+
+                        <th>depth 2</th>
+
+                        <th>depth 3</th>
+
+                        <th>depth 4</th>
+
+                        <th>depth 5</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>depth 0</td>
+
+                        <td>depth 1</td>
+
+                        <td>depth 2</td>
+
+                        <td>depth 3</td>
+
+                        <td>depth 4</td>
+
+                        <td>depth 5</td>
+                    </tr>
+
+                    <tr>
+                        <td>depth 0</td>
+
+                        <td>depth 1</td>
+
+                        <td>depth 2</td>
+
+                        <td>depth 3</td>
+
+                        <td>depth 4</td>
+
+                        <td>depth 5</td>
+                    </tr>
+
+                    <tr>
+                        <td>depth 0</td>
+
+                        <td>depth 1</td>
+
+                        <td>depth 2</td>
+
+                        <td>depth 3</td>
+
+                        <td>depth 4</td>
+
+                        <td>depth 5</td>
+                    </tr>
+
+                    <tr>
+                        <td>depth 0</td>
+
+                        <td>depth 1</td>
+
+                        <td>depth 2</td>
+
+                        <td>depth 3</td>
+
+                        <td>depth 4</td>
+
+                        <td>depth 5</td>
+                    </tr>
+
+                    <tr>
+                        <td>depth 0</td>
+
+                        <td>depth 1</td>
+
+                        <td>depth 2</td>
+
+                        <td>depth 3</td>
+
+                        <td>depth 4</td>
+
+                        <td>depth 5</td>
+                    </tr>
+
+                    <tr>
+                        <td>depth 0</td>
+
+                        <td>depth 1</td>
+
+                        <td>depth 2</td>
+
+                        <td>depth 3</td>
+
+                        <td>depth 4</td>
+
+                        <td>depth 5</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        $(function() {
+            const isScroll =
+                $(".sticky-table").outerWidth() <
+                $(".sticky-table table").outerWidth() ?
+                true :
+                false;
+            if (isScroll) {
+                $(".sticky-table").on("scroll", function() {
+                    $(this)._toggleClass("scroll", $(this).scrollLeft() > 0);
+                });
+            }
+        });
+
+        $.fn._toggleClass = function(addClass, condition) {
+            return this.each(function() {
+                if (condition) {
+                    $(this).addClass(addClass);
+                } else {
+                    $(this).removeClass(addClass);
+                }
+            });
+        };
+    </script>
+</body>
+
+</html>
