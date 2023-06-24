@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="@@webRoot/assets/css/common.css">
+  <script src="@@webRoot/assets/js/plugin.js"></script>
+</head>
+<body>
+    <div id="wrap">
+        <h1>css</h1>
+        <div class="flex">
+
+            <div class="coin-box">
+                <div class="coin">
+                    <div class="side heads"></div>
+                    <div class="side tails"></div>
+                </div>
+    
+            </div>
+
+            <strong>256,000원</strong>
+        </div>
+
+        <h1>로티</h1>
+        <div class="flex">
+            <div class="coin-box">
+                <div class="lottie"></div>
+            </div>
+            <strong>256,000원</strong>
+        </div>
+        
+        
+
+        <div class="image">
+            <div>
+                <h1>A png row</h1>
+                <img src="../assets/images/apngb-animated_row.png" alt="">
+            </div>
+            <div>
+                <h1>A png</h1>
+                <img src="../assets/images/apngb-animated.png" alt="">
+            </div>
+            <div>
+                <h1>gif</h1>
+                <img src="../assets/images/loading_ani.gif" alt="">
+            </div>
+            <div>
+                <h1>lottie</h1>
+                <div class="lottie-car"></div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js" type="text/javascript"></script>
+<script>
+$(function(){
+    // $('.coin').on('animationend', function(){
+    //     void $('.coin').props(offsetWidth); 
+    //     $('.coin').addClass('once');
+    // })
+
+    var animation = bodymovin.loadAnimation({
+        container: $('.lottie')[0], // Required
+        path: 'https://assets3.lottiefiles.com/packages/lf20_qc3pdcqf.json', // Required
+        renderer: 'svg', // Required
+        loop: false, // Optional
+        autoplay: true, // Optional
+        name: "Hello World", // Name for future reference. Optional.
+    })
+    var animationCar = bodymovin.loadAnimation({
+        container: $('.lottie-car')[0], // Required
+        path: '../assets/images/loading_ani.lottie.json', // Required
+        renderer: 'svg', // Required
+        loop: true, // Optional
+        autoplay: true, // Optional
+        name: "Hello World", // Name for future reference. Optional.
+    })
+})
+</script>
+</html>

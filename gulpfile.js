@@ -104,5 +104,6 @@ const webServer = parallel(watcher, server);
 const dev = series(html, scss, image, font, js, copyCss);
 exports.clean = series(clean);
 exports.html = series(html);
+exports.image = series(image);
 exports.build = series(setProduct, dev);
 exports.default = series(dev, webServer);
