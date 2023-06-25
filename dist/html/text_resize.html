@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../assets/css/common.css" />
+    <script src="../assets/js/plugin.js"></script>
+  </head>
+  <body>
+    <div id="wrap">
+      <div class="inp">
+        <div class="inp-group">
+          <input type="text" name="" id="" value="" class="" />
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script>
+    $(function () {
+      const $div = $(
+        '<div style="white-space:nowrap;visibility:hidden;position: absolute;" />'
+      );
+      const fs = $(".inp input").css("font-size");
+      const $inp = $(".inp input");
+
+      $inp
+        .on("focusout", function () {
+          const $this = $(this);
+          $inp.after($div);
+          $div.text($this.val());
+          if ($div.prop("scrollWidth") > $inp.width()) {
+            const ratio = $inp.outerWidth() / $div.prop("scrollWidth");
+            $this.css("font-size", `${Math.floor(parseInt(fs) * ratio)}px`);
+            $div.remove();
+          }
+        })
+        .on("focus", function () {
+          const $this = $(this);
+          $this.removeAttr("style");
+        });
+    });
+  </script>
+</html>
